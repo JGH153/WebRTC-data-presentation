@@ -86,6 +86,12 @@
 				</section>
 			</section>
 			<section>
+				Too few developers know WebRTC as the learning curve is a bit steep in the beginning
+				<aside class="notes">
+					Also is seems to be narrovly focues (just video conversations), but i'm here to prove thats wrong
+				</aside>
+			</section>
+			<section>
 				<section>
 					How I learned WebRTC
 					<aside class="notes">
@@ -122,8 +128,89 @@
 					</code></pre>
 				</section>
 				<section>
-					Connecting browsers, signaling etc
-					TODO some code!
+					Setup RTCPeerConnection with a STUN server
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						const myRtcConnection = new RTCPeerConnection(configuration);
+					</code></pre>
+					<aside class="notes">
+						STUN is used for finding your public IP and port for establishing a connection
+					</aside>
+				</section>
+				<section>
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						const options = {
+							reliable:true
+						};
+						const myDataChannel = myRtcConnection.createDataChannel("label", options)
+						myRtcConnection.ondatachannel = (event) => {
+							const receiveChannel = event.channel;
+							receiveChannel.onmessage = (event) => {
+								// got a message
+							}
+						}
+					</code></pre>
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						myDataChannel.send( "Some data" );
+					</code></pre>
+				</section>
+				<section>
+					<h2>Connecting to another browser</h2>
+					<p class="fragment">Need to meed at a signaling server</p>
+					<p class="fragment">Does not tecnically need a signaling server</p>
+					<p class="fragment">Can use some pidgeon with a memory stick</p>
+					<p class="fragment">Suggest using WebSocket</p>
+				</section>
+				<section>
+					Call some user connected to the same backend
+					<p class="fragment">
+						Create and send an offer (RTCSessionDescription)
+					</p>
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						myRtcConnection.createOffer().then(offer => {
+							sendMessageToServer(offer, "User B");
+							myRtcConnection.setLocalDescription(offer);
+						}
+					</code></pre>
+					<aside class="notes">
+						A description of who you are, and what you support (your browser)
+					</aside>
+				</section>
+				<section>
+					The other user then receives this from the backend and creates an answer (RTCSessionDescription)
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						myRtcConnection.setRemoteDescription(offer);
+						myRtcConnection.createAnswer((answer) => {
+							sendMessageToServer(answer, "User A");
+							myRtcConnection.setLocalDescription(answer);
+						}
+					</code></pre>
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						// on caller's side
+						myRtcConnection.setRemoteDescription(answer);
+					</code></pre>
+				</section>
+				<section>
+					Then a series of ICE candiates are sent back and forth (RTCIceCandidate)
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						myRtcConnection.onicecandidate = (event) => {
+							sendMessageToServer(event.candidate, "Other User");
+						}
+						// on the other client:
+						myRtcConnection.addIceCandidate(new RTCIceCandidate(candidate))
+					</code></pre>
+					<aside class="notes">
+						For finding the shortest path between your two computers<br>
+						Interactive Connectivity Establishment (ICE)
+					</aside>
+				</section>
+				<section>
+					Then each client attempts to connect to each other
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						// Automagick
+					</code></pre>
+					<p class="fragment">
+						Might fall back to TURN
+					</p>
 				</section>
 				<section>
 					Video conversation etc...
@@ -132,25 +219,26 @@
 					<h2>
 						Summary
 					</h2>
-					<p class="fragment">
-						Shared backend
-					</p>
-					<p class="fragment">
-						Video, sound, data
-					</p>
-					<p class="fragment">
-						PeerConnection with STUN (local)
-					</p>
-
-					<p class="fragment">
-						Send offer, and receive answer
-					</p>
-					<p class="fragment">
-						ICE candidates for mapping the network
-					</p>
-					<p class="fragment">
-						Maybe fall back to TURN
-					</p>
+					<ol>
+						<li class="fragment">
+							Shared backend
+						</li>
+						<li class="fragment">
+							Video, sound, data
+						</li>
+						<li class="fragment">
+							CreatePeerConnection with STUN (local)
+						</li>
+						<li class="fragment">
+							Send offer, and receive answer
+						</li>
+						<li class="fragment">
+							ICE candidates for mapping the network
+						</li>
+						<li class="fragment">
+							Maybe fall back to TURN
+						</li>
+					</ol>
 					<h2 class="fragment">
 						Connected!
 					</h2>
@@ -253,7 +341,13 @@
 				</section>
 			</section>
 			<section>
+				Consider using WebRTC adapter (github.com/webrtchacks/adapter)
+			</section>
+			<section>
 				Questions
+			</section>
+			<section>
+				This page is unintentionally left blank
 			</section>
 		</div>
 	</div>
