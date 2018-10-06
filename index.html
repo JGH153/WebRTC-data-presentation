@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/league.css">
+
+	<style>
+		.webrtc-logo-img {
+			background: unset !important;
+			border: unset !important;
+			box-shadow: unset !important;
+			width: 100% !important;
+		}
+
+		.no-caps {
+			text-transform: none !important;
+		}
+	</style>
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h2>
+					The unstoppable secret superpower of WebRTC
+					</h3>
+					<h3>
+						Jan Greger Hemb
+					</h3>
+					<h4>
+						Senior knowledge engineer at Computas
+					</h4>
+			</section>
+			<section>
+				<img class="webrtc-logo-img" src="media/webrtc-logo-horiz-retro-dist.svg">
+				<h2 class="no-caps fragment fade-right">Featuring the unstobbable Data Channel!</h2>
+			</section>
+			<section>Outline?</section>
+			<section>
+				You don't need to know WebRTC for this talk
+			</section>
+			<section>
+				<section>
+					<h2>What is WebRTC in a nutshell?</h2>
+					<ul>
+						<li class="fragment">Direct browser to browser video, audio and data communication API</li>
+						<li class="fragment">API for real time communication</li>
+						<li class="fragment">Websocet directly between browsers</li>
+						<li class="fragment">Channels for video, audio and data</li>
+						<li class="fragment">Media engine</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Traditional model</h2>
+					<h3>A server in the middle</h3>
+					ADD IMG!
+				</section>
+				<section>
+					<h2>Skip the middle man!</h2>
+					<h3>Communicate directly</h3>
+					<aside class="notes">
+						Cutting the middle man is what amazon is doing
+					</aside>
+				</section>
+				<section>
+					Two browser can NOT contact each other directly. Need a signnaling server, but just for etablishing connectin
+				</section>
+			</section>
+			<section>
+				<section>
+					How I learned WebRTC
+					<aside class="notes">
+						TODO add story notes
+					</aside>
+				</section>
+			</section>
+			<section>
+				<section>
+					Demo!
+					<aside class="notes">
+						Drawing app. simple code and what it does. backend just pering as people connect.
+					</aside>
+				</section>
+				<section>
+					Frontend in Angular and backend in NodeJS
+				</section>
+				<section>
+					Code on github, can run all locally
+				</section>
+			</section>
+			<section>
+				<section>
+					How does WebRTC work? (theory, not code?)
+				</section>
+				<section>
+					Getting media...
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+						.then(function(mediaStream) {
+							var video = document.querySelector('video');
+							video.srcObject = mediaStream;
+						}
+					</code></pre>
+				</section>
+				<section>
+					Connecting browsers, signaling etc
+					TODO some code!
+				</section>
+				<section>
+					Video conversation etc...
+				</section>
+				<section>
+					<h2>
+						Summary
+					</h2>
+					<p class="fragment">
+						Shared backend
+					</p>
+					<p class="fragment">
+						Video, sound, data
+					</p>
+					<p class="fragment">
+						PeerConnection with STUN (local)
+					</p>
+
+					<p class="fragment">
+						Send offer, and receive answer
+					</p>
+					<p class="fragment">
+						ICE candidates for mapping the network
+					</p>
+					<p class="fragment">
+						Maybe fall back to TURN
+					</p>
+					<h2 class="fragment">
+						Connected!
+					</h2>
+				</section>
+			</section>
+			<section>
+				<section>
+					The data channel
+				</section>
+				<section>
+					Can send almost anything
+				</section>
+				<section>
+					<h2>Examples</h2>
+					<ul>
+						<li class="fragment">Sending chat</li>
+						<li class="fragment">Sending files</li>
+						<li class="fragment">Sending state (game, redux, drawing, ...)</li>
+						<li class="fragment">Sending screen</li>
+						<li class="fragment">CDN</li>
+					</ul>
+				</section>
+				<section>
+					And no premission required (sidenote about safari)
+				</section>
+			</section>
+			<section>
+				<section>
+					Let's dive into a few examples
+				</section>
+				<section>
+					Sending chat
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						// sender
+						myDataChannel.send("Hello");
+
+						// on the receiving side
+						this.myRtcConnection.ondatachannel = (event) => {
+							receiveChannel.onmessage = (message) => {
+								// Display message
+							};
+						};
+					</code></pre>
+				</section>
+				<section>
+					Sending files (mention br3eaking up big files)
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						// sender
+						const fileReader = new FileReader();
+						const fileSlice = file.slice(offset, offset + chunckSize);
+						fileReader.readAsArrayBuffer(fileSlice);
+						fileReader.onload = (event) => {
+							this.myDataChannel.send(event.target.result);
+						}
+
+						// on the receiving side
+						incommingFileBuffer.push(arrayBuffer);
+
+						// when done on the receiving side
+						var recivedFile = new Blob(this.incommingFileBuffer); 
+					</code></pre>
+				</section>
+				<section>
+					Sharing screen (unconfirmed API)
+					Might be getting it like we get user media
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						navigator.mediaDevices.getUserMedia({ screen: true })
+						.then(function(mediaStream) {
+							...
+						}
+					</code></pre>
+				</section>
+				<section>
+					Sharing a game state (drawing app)
+				</section>
+			</section>
+			<section>
+				<section>
+					Just a few short ideas, there are MANY more usecases for sending data directly bvetween one or more browsers
+				</section>
+				<section>
+					Got sad when you relised that the broadcast API is limited to a browser? <br>
+					Use the data channel to link up more web browser on the same machene!
+				</section>
+			</section>
+			<section>
+				Browser support
+				<iframe style="width: 700px; height: 650px;" src="https://caniuse.com/#search=webrtc"></iframe>
+				<aside class="notes">
+					Edge does not have the data channel, and safari is a bit fuzzy for now
+				</aside>
+			</section>
+			<section>
+				<section>
+					Security
+					Don't bitter, its really good (inlude screenshot)
+				</section>
+				<section>
+					Webrtc and STUN gets your public IP. is that bad?
+				</section>
+			</section>
+			<section>
+				Questions
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			history: true,
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+			]
+		});
+	</script>
+</body>
+
+</html>
