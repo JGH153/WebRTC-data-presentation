@@ -56,7 +56,7 @@
 			</section>
 			<section>Outline?</section>
 			<section>
-				You don't need to know WebRTC for this talk
+				<h2 class="no-caps">You don't need to know WebRTC</h2>
 			</section>
 			<section>
 				<section>
@@ -77,8 +77,8 @@
 				<section>
 					<h2>Skip the middle man!</h2>
 					<h3>Communicate directly</h3>
-					<aside class="notes">
-						Cutting the middle man is what amazon is doing
+					<aside class="notes" data-markdown>
+						-Cutting the middle man is what amazon is doing
 					</aside>
 				</section>
 				<section>
@@ -87,14 +87,14 @@
 			</section>
 			<section>
 				Too few developers know WebRTC as the learning curve is a bit steep in the beginning
-				<aside class="notes">
-					Also is seems to be narrovly focues (just video conversations), but i'm here to prove thats wrong
+				<aside class="notes" data-markdown>
+					- Also is seems to be narrovly focues (just video conversations), but i'm here to prove thats wrong
 				</aside>
 			</section>
 			<section>
 				<section>
 					How I learned WebRTC
-					<aside class="notes">
+					<aside class="notes" data-markdown>
 						TODO add story notes
 					</aside>
 				</section>
@@ -102,7 +102,7 @@
 			<section>
 				<section>
 					Demo!
-					<aside class="notes">
+					<aside class="notes" data-markdown>
 						Drawing app. simple code and what it does. backend just pering as people connect.
 					</aside>
 				</section>
@@ -111,6 +111,14 @@
 				</section>
 				<section>
 					Code on github, can run all locally
+				</section>
+			</section>
+			<section>
+				<section>
+					Creating the demo and prez was hard due to a dark force...
+				</section>
+				<section>
+					Img Pondus x3
 				</section>
 			</section>
 			<section>
@@ -132,8 +140,8 @@
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						const myRtcConnection = new RTCPeerConnection(configuration);
 					</code></pre>
-					<aside class="notes">
-						STUN is used for finding your public IP and port for establishing a connection
+					<aside class="notes" data-markdown>
+						-STUN is used for finding your public IP and port for establishing a connection
 					</aside>
 				</section>
 				<section>
@@ -171,8 +179,8 @@
 							myRtcConnection.setLocalDescription(offer);
 						}
 					</code></pre>
-					<aside class="notes">
-						A description of who you are, and what you support (your browser)
+					<aside class="notes" data-markdown>
+						- A description of who you are, and what you support (your browser)
 					</aside>
 				</section>
 				<section>
@@ -198,9 +206,9 @@
 						// on the other client:
 						myRtcConnection.addIceCandidate(new RTCIceCandidate(candidate))
 					</code></pre>
-					<aside class="notes">
-						For finding the shortest path between your two computers<br>
-						Interactive Connectivity Establishment (ICE)
+					<aside class="notes" data-markdown>
+						- For finding the shortest path between your two computers
+						- Interactive Connectivity Establishment (ICE)
 					</aside>
 				</section>
 				<section>
@@ -323,18 +331,31 @@
 					Got sad when you relised that the broadcast API is limited to a browser? <br>
 					Use the data channel to link up more web browser on the same machene!
 				</section>
+				<section>
+					Allow you to view this prez live on nour phone as i present? WEBRTC!
+				</section>
 			</section>
 			<section>
 				Browser support
 				<iframe style="width: 700px; height: 650px;" src="https://caniuse.com/#search=webrtc"></iframe>
-				<aside class="notes">
-					Edge does not have the data channel, and safari is a bit fuzzy for now
+				<aside class="notes" data-markdown>
+					- Edge does not have the data channel, and safari is a bit fuzzy for now.
+
+					- "Microsof is unhappy with the state of WebRTC and wants a bigger standard (Object RTC )"
 				</aside>
 			</section>
 			<section>
 				<section>
-					Security
-					Don't bitter, its really good (inlude screenshot)
+					<h2>Security</h2>
+					Don't bother, its really good (inlude screenshot)<br>
+					The alternatives are less ecure
+
+					<aside class="notes" data-markdown>
+						- "As a result of this strong focus on secure communication, WebRTC is currently regarded by some to be one of the
+						most secure VoIP solutions out there"
+
+						- WebRTC forbids unencrypted communication
+					</aside>
 				</section>
 				<section>
 					Webrtc and STUN gets your public IP. is that bad?
