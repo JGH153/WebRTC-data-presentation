@@ -325,6 +325,37 @@
 			</section>
 			<section>
 				<section>
+					Large Data Channel Messages
+				</section>
+				<section>
+					EOR<br>
+					End Of Record<br>
+					Is the message complete, or partial?
+					<aside class="notes" data-markdown>
+						- Chromium ignores that flag and simply delivers the incomplete message
+						- Partial ways arout it
+					</aside>
+				</section>
+				<section>
+					"Thanks to the new EOR feature Firefox now supports receiving up to 1 GiB messages."
+					<aside class="notes" data-markdown>
+						- was less than 64 KiB
+						- Got unstable around here, suddenly closing the connection, or blocking all other data
+						- Firefox is now ahead of Chrome
+					</aside>
+				</section>
+				<section>
+					Not higher as the entire object needs to fit into memory and 1gb is starting to become to high for some devices due to low ram
+					<aside class="notes" data-markdown>
+						And larger messages are easilier lost in transmission (and at a higher cost)
+					</aside>
+				</section>
+				<section>
+					Is backward compatiable
+				</section>
+			</section>
+			<section>
+				<section>
 					Just a few short ideas, there are MANY more usecases for sending data directly bvetween one or more browsers
 				</section>
 				<section>
@@ -334,15 +365,39 @@
 				<section>
 					Allow you to view this prez live on nour phone as i present? WEBRTC!
 				</section>
+				<section>
+					Offloading data transmition to the frontend
+					<br>
+					Servers are (relativly) expencive
+					<br>
+					Using WebRTC offloads a lot of bandwith off the server
+					<aside class="notes" data-markdown>
+						- Can do far bigger, faster and more reliable data transfers between clients as server is not overloaded
+					</aside>
+				</section>
+				<section>
+					(call to action)<br>
+					Webrtc is a buldingblock for the web of tomorrow. You will need it, either for video or data, or both. <br>
+					We are aproaching av ever more connected future and WebRTC will help create that future
+				</section>
+				<section>
+					Remember, it's gratis
+				</section>
 			</section>
 			<section>
-				<h3>Browser support</h3>
-				<iframe style="width: 700px; height: 580px;" src="https://caniuse.com/#search=webrtc"></iframe>
-				<aside class="notes" data-markdown>
-					- Edge does not have the data channel, and safari is a bit fuzzy for now.
+				<section>
+					<h3>Browser support</h3>
+					<iframe style="width: 700px; height: 580px;" src="https://caniuse.com/#search=webrtc"></iframe>
+					<aside class="notes" data-markdown>
+						- Edge does not have the data channel
 
-					- "Microsof is unhappy with the state of WebRTC and wants a bigger standard (Object RTC )"
-				</aside>
+						- "Microsof is unhappy with the state of WebRTC and wants a bigger standard (Object RTC )"
+						- MS wants more control
+					</aside>
+				</section>
+				<section>
+					Safari and all the bugs
+				</section>
 			</section>
 			<section>
 				<section>
@@ -351,7 +406,8 @@
 					The alternatives are less ecure
 
 					<aside class="notes" data-markdown>
-						- "As a result of this strong focus on secure communication, WebRTC is currently regarded by some to be one of the
+						- "As a result of this strong focus on secure communication, WebRTC is currently regarded by some to be one of
+						the
 						most secure VoIP solutions out there"
 
 						- WebRTC forbids unencrypted communication
@@ -363,6 +419,26 @@
 			</section>
 			<section>
 				Consider using WebRTC adapter (github.com/webrtchacks/adapter)
+			</section>
+			<section>
+				<section>
+					News in WebRTC
+				</section>
+				<section>
+					WebRTC is a Candidate Recommendation (CR)! (21 June 2018)<br>
+					Means it started to stabilise and will se wider and better support
+				</section>
+				<section>
+					Transceiver <br>
+					New (and optional) way of having more control over how media flows between clients<br>
+					More control for more complexity
+					Don't learn it utill you master the standard (and easie) way
+					(as far as i know) it will remain optional and not become the standard
+				</section>
+				<section>
+					AddStream is replaced by AddTrack as WebRTC now support multible streams (video/audio) from each user<br>
+					Data channel has always supported multible, but they could force sending in sequence on  large messages
+				</section>
 			</section>
 			<section>
 				Questions
