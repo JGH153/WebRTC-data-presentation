@@ -21,6 +21,9 @@
 		.no-caps {
 			text-transform: none !important;
 		}
+		.contain-bg-img div {
+			background-size: contain !important;
+		}
 	</style>
 
 	<!-- Theme used for syntax highlighting of code -->
@@ -93,6 +96,16 @@
 			</section>
 			<section>
 				<section>
+					Creating the demo and prez was hard due to a dark force...
+				</section>
+				<section class="contain-bg-img" data-background="media/pondus/1.jpg"></section>
+				<section class="contain-bg-img" data-background="media/pondus/2.jpg"></section>
+				<section class="contain-bg-img" data-background="media/pondus/3.jpg"></section>
+				<section class="contain-bg-img" data-background="media/pondus/4.jpg"></section>
+				<section class="contain-bg-img" data-background="media/pondus/5.jpg"></section>
+			</section>
+			<section>
+				<section>
 					How I learned WebRTC
 					<aside class="notes" data-markdown>
 						TODO add story notes
@@ -111,14 +124,6 @@
 				</section>
 				<section>
 					Code on github, can run all locally
-				</section>
-			</section>
-			<section>
-				<section>
-					Creating the demo and prez was hard due to a dark force...
-				</section>
-				<section>
-					Img Pondus x3
 				</section>
 			</section>
 			<section>
@@ -345,13 +350,116 @@
 					</aside>
 				</section>
 				<section>
-					Not higher as the entire object needs to fit into memory and 1gb is starting to become to high for some devices due to low ram
+					Not higher as the entire object needs to fit into memory and 1gb is starting to become to high for some devices
+					due to low ram
 					<aside class="notes" data-markdown>
 						And larger messages are easilier lost in transmission (and at a higher cost)
 					</aside>
 				</section>
 				<section>
 					Is backward compatiable
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Browser support</h3>
+					<iframe style="width: 700px; height: 580px;" src="https://caniuse.com/#search=webrtc"></iframe>
+					<aside class="notes" data-markdown>
+						- Edge does not have the data channel
+
+						- "Microsof is unhappy with the state of WebRTC and wants a bigger standard (Object RTC )"
+						- MS wants more control
+					</aside>
+				</section>
+				<section>
+					Safari and all the bugs
+					NO DATA CHANNEL WITHOUT VIDEO?!?!
+					"Safari fails to establish a connection here unless getUserMedia is called"
+					"Contrary to Chrome and Firefox, we do not leak private IP addresses access unless camera or microphone access is
+					also granted."
+					<iframe style="width: 700px; height: 580px;" src="https://bugs.webkit.org/show_bug.cgi?id=189503#c2"></iframe>
+					<aside class="notes" data-markdown>
+						- one of several data related bugs
+						- (might have changes) could
+						- Remember, Webkit/Apple’s implementation is young
+						- (might have changed) Webrtc only works insafari on ios, not in chrome on top of safari or webview
+
+					</aside>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Security</h2>
+					I read a 8k pice: "A Study of WebRTC Security"
+					Don't bother, its really good (inlude screenshot)<br>
+					The alternatives are less secure
+					"If I wanted to hack you, WebRTC would be the last place I’d start."
+					It is encrypted. By default. And there’s no way to remove that encryption from occurring
+					Asks for Camera
+					It gets updated every 6-8 weeks with your browser
+
+					<aside class="notes" data-markdown>
+						- "As a result of this strong focus on secure communication, WebRTC is currently regarded by some to be one of
+						the most secure VoIP solutions out there"
+
+						- WebRTC forbids unencrypted communication
+					</aside>
+				</section>
+				<section>
+					Webrtc and STUN gets your public IP. is that bad?
+				</section>
+			</section>
+			<section>
+				<section>
+					How many connected users?
+				</section>
+				<section>
+					The server-client model<br>
+					<img class="stretch" data-src="media/csm.png">
+				</section>
+				<section>
+					Peer to Peer<br>
+					<img class="stretch" data-src="media/p2p.png">
+				</section>
+				<section>
+					You can structure WebRTC data channel network as either, but easier with P2P
+					As it is just data, you can realy it frougth a "host"
+				</section>
+				<section>
+					Room size<br>
+					<img class="stretch" data-src="media/complex.jpg">
+					Stopping at 10 is a good place for video, more for data
+
+					<aside class="notes" data-markdown>
+						- Can get mor with a Selective Forwarding Unit. (back to client server model)
+					</aside>
+				</section>
+			</section>
+			<section>
+				Debugging WebRTC
+				<iframe style="width: 700px; height: 580px;" src="https://testrtc.com/"></iframe>
+			</section>
+			<section>
+				Consider using WebRTC adapter (github.com/webrtchacks/adapter)
+			</section>
+			<section>
+				<section>
+					News in WebRTC
+				</section>
+				<section>
+					WebRTC is a Candidate Recommendation (CR)! (21 June 2018)<br>
+					Means it started to stabilise and will se wider and better support
+				</section>
+				<section>
+					Transceiver <br>
+					New (and optional) way of having more control over how media flows between clients<br>
+					More control for more complexity
+					Don't learn it utill you master the standard (and easie) way
+					(as far as i know) it will remain optional and not become the standard
+				</section>
+				<section>
+					AddStream is replaced by AddTrack as WebRTC now support multible streams (video/audio) from each user<br>
+					Data channel has always supported multible, but they could force sending in sequence on large messages
 				</section>
 			</section>
 			<section>
@@ -380,65 +488,13 @@
 					Webrtc is a buldingblock for the web of tomorrow. You will need it, either for video or data, or both. <br>
 					We are aproaching av ever more connected future and WebRTC will help create that future
 				</section>
-				<section>
-					Remember, it's gratis
-				</section>
 			</section>
 			<section>
-				<section>
-					<h3>Browser support</h3>
-					<iframe style="width: 700px; height: 580px;" src="https://caniuse.com/#search=webrtc"></iframe>
-					<aside class="notes" data-markdown>
-						- Edge does not have the data channel
-
-						- "Microsof is unhappy with the state of WebRTC and wants a bigger standard (Object RTC )"
-						- MS wants more control
-					</aside>
-				</section>
-				<section>
-					Safari and all the bugs
-				</section>
+				Remember, it's gratis
+				(exept for signaling and turn)
 			</section>
 			<section>
-				<section>
-					<h2>Security</h2>
-					Don't bother, its really good (inlude screenshot)<br>
-					The alternatives are less ecure
-
-					<aside class="notes" data-markdown>
-						- "As a result of this strong focus on secure communication, WebRTC is currently regarded by some to be one of
-						the
-						most secure VoIP solutions out there"
-
-						- WebRTC forbids unencrypted communication
-					</aside>
-				</section>
-				<section>
-					Webrtc and STUN gets your public IP. is that bad?
-				</section>
-			</section>
-			<section>
-				Consider using WebRTC adapter (github.com/webrtchacks/adapter)
-			</section>
-			<section>
-				<section>
-					News in WebRTC
-				</section>
-				<section>
-					WebRTC is a Candidate Recommendation (CR)! (21 June 2018)<br>
-					Means it started to stabilise and will se wider and better support
-				</section>
-				<section>
-					Transceiver <br>
-					New (and optional) way of having more control over how media flows between clients<br>
-					More control for more complexity
-					Don't learn it utill you master the standard (and easie) way
-					(as far as i know) it will remain optional and not become the standard
-				</section>
-				<section>
-					AddStream is replaced by AddTrack as WebRTC now support multible streams (video/audio) from each user<br>
-					Data channel has always supported multible, but they could force sending in sequence on  large messages
-				</section>
+				Remember Webrtc is a tool, not a solution
 			</section>
 			<section>
 				Questions
