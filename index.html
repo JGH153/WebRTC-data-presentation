@@ -21,6 +21,7 @@
 		.no-caps {
 			text-transform: none !important;
 		}
+
 		.contain-bg-img div {
 			background-size: contain !important;
 		}
@@ -399,10 +400,10 @@
 					It gets updated every 6-8 weeks with your browser
 
 					<aside class="notes" data-markdown>
-						- "As a result of this strong focus on secure communication, WebRTC is currently regarded by some to be one of
-						the most secure VoIP solutions out there"
-
+						- "As a result of this strong focus on secure communication,
+						WebRTC is currently regarded by some to be one of the most secure VoIP solutions out there"
 						- WebRTC forbids unencrypted communication
+						- IP problem can be solved by good VPN (but ip exposed by a lot of progs)
 					</aside>
 				</section>
 				<section>
@@ -444,6 +445,21 @@
 				</section>
 			</section>
 			<section>
+				<section>
+					<h3>To send data reliably, or not</h3>
+					Sending ordered or not. One is faser, one is reliable <br>
+					Why send unreliable?
+				</section>
+				<section>
+					<h1>Speed</h1>
+					<aside class="notes" data-markdown>
+						- Sending files and chan ureliable would be catastrofic
+						- sending game starte unreliable cold be benefitical
+						- UDP vs TCP
+					</aside>
+				</section>
+			</section>
+			<section>
 				Debugging WebRTC
 				<iframe style="width: 700px; height: 580px;" src="https://testrtc.com/"></iframe>
 			</section>
@@ -464,7 +480,7 @@
 					More control for more complexity
 					Don't learn it utill you master the standard (and easie) way
 					(as far as i know) it will remain optional and not become the standard
-					Transceiver  will allow you to distinguish between several incommong video streams
+					Transceiver will allow you to distinguish between several incommong video streams
 					Can start sending video befor negotiation has completed
 					Only in FF for now, comming to rest
 				</section>
@@ -501,12 +517,30 @@
 				</section>
 			</section>
 			<section>
+				<h3>Chrome is killing background tabs</h3>
+				(murder img?)
+				There is hope!
+				WebRTC connections are (mostly exempted)
+				<aside class="notes" data-markdown>
+					- Applications with real-time connections (WebSockets and WebRTC), to avoid closing these connections by timeout.
+					The run-timers-once-a-second rule is still applied in these cases.
+					- Applications playing audio are considered foreground and aren’t throttled. (webRTC with audio)
+				</aside>
+			</section>
+			<section>
 				Remember, it's gratis
 				(exept for signaling and turn)
 				"in almost all cases, using WebRTC will cost you less and get you there faster than the alternatives"
 			</section>
 			<section>
 				Remember Webrtc is a tool, not a solution
+			</section>
+			<section>
+				<h3>Quick example of webRTC in action?</h3>
+				apper.in
+				<aside class="notes" data-markdown>
+					- Norwegian company, originale by Telenor, now sold to Videonor 
+				</aside>
 			</section>
 			<section>
 				Questions
