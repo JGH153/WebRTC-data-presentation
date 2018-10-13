@@ -25,6 +25,10 @@
 		.contain-bg-img div {
 			background-size: contain !important;
 		}
+
+		.slides {
+			width: 80% !important;
+		}
 	</style>
 
 	<!-- Theme used for syntax highlighting of code -->
@@ -58,39 +62,54 @@
 				<img class="webrtc-logo-img" src="media/webrtc-logo-horiz-retro-dist.svg">
 				<h2 class="no-caps fragment fade-right">Featuring the unstobbable Data Channel!</h2>
 			</section>
-			<section>Outline?</section>
 			<section>
 				<h2 class="no-caps">You don't need to know WebRTC</h2>
+			</section>
+			<section>
+				<h3>The journey to to data channel</h3>
+				<ul>
+					<li class="fragment">Basic WebRTC</li>
+					<li class="fragment">Story and demo</li>
+					<li class="fragment">Connecting users</li>
+					<li class="fragment">The Data channel</li>
+					<li class="fragment">News</li>
+					<li class="fragment">Browser support</li>
+					<li class="fragment">Call to action</li>
+				</ul>
 			</section>
 			<section>
 				<section>
 					<h2>What is WebRTC in a nutshell?</h2>
 					<ul>
-						<li class="fragment">Direct browser to browser video, audio and data communication API</li>
+						<li class="fragment">Direct browser to browser communication API</li>
 						<li class="fragment">API for real time communication</li>
 						<li class="fragment">Websocet directly between browsers</li>
 						<li class="fragment">Channels for video, audio and data</li>
 						<li class="fragment">Media engine</li>
+						<li class="fragment">API for making skype in the browser</li>
 					</ul>
 				</section>
 				<section>
-					<h2>Traditional model</h2>
-					<h3>A server in the middle</h3>
-					ADD IMG!
+					<h3>Traditional model</h3>
+					<h5>A server in the middle</h5>
+					<img class="stretch" data-src="media/csm.png">
 				</section>
 				<section>
-					<h2>Skip the middle man!</h2>
-					<h3>Communicate directly</h3>
+					<h3>Skip the middle man!</h3>
+					<h5>Communicate directly</h5>
+					<img class="stretch" data-src="media/p2p.png">
 					<aside class="notes" data-markdown>
 						-Cutting the middle man is what amazon is doing
 					</aside>
 				</section>
 				<section>
-					Two browser can NOT contact each other directly. Need a signnaling server, but just for etablishing connectin
+					<h3>Two browser can NOT contact each other directly</h3>
+					Need a signnaling server
 				</section>
 			</section>
 			<section>
 				Too few developers know WebRTC as the learning curve is a bit steep in the beginning
+				Img of "eve online lerning curve"?
 				<aside class="notes" data-markdown>
 					- Also is seems to be narrovly focues (just video conversations), but i'm here to prove thats wrong
 				</aside>
@@ -260,7 +279,7 @@
 			</section>
 			<section>
 				<section>
-					The data channel
+					<h3>The data channel</h3>
 				</section>
 				<section>
 					Can send almost anything
@@ -298,7 +317,7 @@
 					</code></pre>
 				</section>
 				<section>
-					Sending files (mention br3eaking up big files)
+					Sending files
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						// sender
 						const fileReader = new FileReader();
@@ -314,16 +333,26 @@
 						// when done on the receiving side
 						var recivedFile = new Blob(this.incommingFileBuffer); 
 					</code></pre>
+					<aside class="notes" data-markdown>
+						- Break large files up into chunks (offset and chunckSize)
+					</aside>
 				</section>
 				<section>
-					Sharing screen (unconfirmed API)
-					Might be getting it like we get user media
+					<h3>Sharing screen</h3>
+					<p class="fragment">
+						New API (getUserMedia -> getDisplayMedia)
+					</p>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
-						navigator.mediaDevices.getUserMedia({ screen: true })
+						navigator.getDisplayMedia({ video: true })
 						.then(function(mediaStream) {
 							...
 						}
 					</code></pre>
+					<h3 class="fragment">Only supported in Edge</h3>
+					<aside class="notes" data-markdown>
+						- Comming to rest. Might already be out for some
+						- Might miss target of chrome 70
+					</aside>
 				</section>
 				<section>
 					Sharing a game state (drawing app)
@@ -368,9 +397,55 @@
 					<aside class="notes" data-markdown>
 						- Edge does not have the data channel
 
-						- "Microsof is unhappy with the state of WebRTC and wants a bigger standard (Object RTC )"
+						- "Microsof is unhappy with the state of WebRTC and wants a bigger standard (Object RTC)"
 						- MS wants more control
 					</aside>
+				</section>
+				<section>
+					<h3>Browser diference</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>Browser</th>
+								<th>Quirck</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fragment">
+								<td>Firefox</td>
+								<td>Most up top date with the spec</td>
+							</tr>
+							<tr class="fragment">
+								<td>Chrome</td>
+								<td>Good, but behind FF</td>
+							</tr>
+							<tr class="fragment">
+								<td>Safari</td>
+								<td>Recent. Data channel issues (to be fixed)</td>
+							</tr>
+							<tr class="fragment">
+								<td>iOS</td>
+								<td>Only safari (comming to other browsers)</td>
+							</tr>
+							<tr class="fragment">
+								<td>Android</td>
+								<td>FF, Chrome and Samsung</td>
+							</tr>
+							<tr class="fragment">
+								<td>Edge</td>
+								<td>No data channel. getDisplayMedia. Object RTC</td>
+							</tr>
+							<tr class="fragment">
+								<td>IE 11</td>
+								<td>😂</td>
+							</tr>
+						</tbody>
+						<aside class="notes" data-markdown>
+							- Safari initally refused data connection w/o video or audio. Reverted that decition
+							- UC for Android has no support (from china)
+							- Remember that all browser on iOS are just skins for safari
+						</aside>
+					</table>
 				</section>
 				<section>
 					Safari and all the bugs
@@ -378,6 +453,7 @@
 					"Safari fails to establish a connection here unless getUserMedia is called"
 					"Contrary to Chrome and Firefox, we do not leak private IP addresses access unless camera or microphone access is
 					also granted."
+					<h1>TODO SHOT FROM IFRAME</h1>
 					<iframe style="width: 700px; height: 580px;" src="https://bugs.webkit.org/show_bug.cgi?id=189503#c2"></iframe>
 					<aside class="notes" data-markdown>
 						- one of several data related bugs
@@ -578,8 +654,12 @@
 				<h3>Quick example of webRTC in action?</h3>
 				apper.in
 				<aside class="notes" data-markdown>
-					- Norwegian company, originale by Telenor, now sold to Videonor 
+					- Norwegian company, originale by Telenor, now sold to Videonor
 				</aside>
+			</section>
+			<section>
+				https://blog.mozilla.org/webrtc/<br>
+				<img class="webrtc-logo-img" src="media/ffWebrtcblog.JPG">
 			</section>
 			<section>
 				Questions
