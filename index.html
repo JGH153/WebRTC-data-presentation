@@ -21,6 +21,7 @@
 		.no-caps {
 			text-transform: none !important;
 		}
+
 		.contain-bg-img div {
 			background-size: contain !important;
 		}
@@ -464,13 +465,52 @@
 					More control for more complexity
 					Don't learn it utill you master the standard (and easie) way
 					(as far as i know) it will remain optional and not become the standard
-					Transceiver  will allow you to distinguish between several incommong video streams
+					Transceiver will allow you to distinguish between several incommong video streams
 					Can start sending video befor negotiation has completed
 					Only in FF for now, comming to rest
 				</section>
 				<section>
 					AddStream is replaced by AddTrack as WebRTC now support multible streams (video/audio) from each user<br>
 					Data channel has always supported multible, but they could force sending in sequence on large messages
+				</section>
+				<section>
+					<h3 class="no-caps">RTCRtpTransceiver.direction</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>State</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fragment">
+								<td>"sendrecv"</td>
+								<td>Sending and reciving</td>
+							</tr>
+							<tr class="fragment">
+								<td>"sendonly"</td>
+								<td>Sending</td>
+							</tr>
+							<tr class="fragment">
+								<td>"recvonly"</td>
+								<td>Reciving</td>
+							</tr>
+							<tr class="fragment">
+								<td>"inactive"</td>
+								<td>Nothing/disabled</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</section>
+				<section>
+					Unified Plan VS Plan B
+					The fingt for how to send multible video streams
+					<aside class="notes" data-markdown>
+						- Unified Plan win (in FF)
+						- Plan B lost (in chrome, will be replaced)
+						- For sending multible video stresm like cameras and screens
+					</aside>
 				</section>
 			</section>
 			<section>
