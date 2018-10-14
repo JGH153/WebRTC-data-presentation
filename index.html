@@ -29,6 +29,14 @@
 		.slides {
 			width: 80% !important;
 		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5 {
+			text-transform: none !important;
+		}
 	</style>
 
 	<!-- Theme used for syntax highlighting of code -->
@@ -56,6 +64,9 @@
 					</h3>
 					<h4>
 						Senior knowledge engineer at Computas
+					</h4>
+					<h4>
+						bit.ly/webrtc2018
 					</h4>
 			</section>
 			<section>
@@ -271,7 +282,7 @@
 					Adding local strem to RTCPeerConnection
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						localVideoStream.getTracks().forEach((currentTrack: MediaStreamTrack) => {
-							this.myRtcConnection.addTrack(currentTrack);
+							myRtcConnection.addTrack(currentTrack);
 						});
 					</code></pre>
 					<aside class="notes" data-markdown>
@@ -279,7 +290,21 @@
 					</aside>
 				</section>
 				<section>
-					Data channel
+					<!-- TODO move! -->
+					<h3>Handleling other users video when it arrives</h3>
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						myRtcConnection.ontrack = (event) => {
+							// use event.streams (like video element)
+						}
+					</code></pre>
+
+					<aside class="notes" data-markdown>
+						- event.streams is array of MediaStream
+						- MediaStream contains both video and audio
+					</aside>
+				</section>
+				<section>
+					<h3>Data channel</h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						const options = {
 							// Reliable(ordered) is now default
@@ -302,7 +327,7 @@
 					<p class="fragment">Does not technically need a signaling server</p>
 					<p class="fragment">Suggest using WebSocket</p>
 					<aside class="notes" data-markdown>
-						- Saignaling/discovery 
+						- Saignaling/discovery
 						- Can use some pidgeon with a memory stick
 						- just text info passed on
 						- can use http, but need fast duplex communication channel
@@ -362,9 +387,6 @@
 					</p>
 				</section>
 				<section>
-					TODO code for displaying other persons video strem
-				</section>
-				<section>
 					<h2>
 						Summary
 					</h2>
@@ -373,10 +395,10 @@
 							Shared backend
 						</li>
 						<li class="fragment">
-							Video, sound, data
+							CreatePeerConnection with STUN (local)
 						</li>
 						<li class="fragment">
-							CreatePeerConnection with STUN (local)
+							Video, sound, data
 						</li>
 						<li class="fragment">
 							Send offer, and receive answer
@@ -395,10 +417,13 @@
 			</section>
 			<section>
 				<section>
-					<h3>The data channel</h3>
+					<h3>Diving into the data channel</h3>
 				</section>
 				<section>
-					Can send almost anything
+					<h3>Can send almost anything</h3>
+					<aside class="notes" data-markdown>
+						- USVString (so JSON), a Blob, an ArrayBuffer, or an ArrayBufferView
+					</aside>
 				</section>
 				<section>
 					<h2>Examples</h2>
@@ -411,7 +436,7 @@
 					</ul>
 				</section>
 				<section>
-					And no premission required (sidenote about safari)
+					<h3>With no asking for premission</h3>
 				</section>
 			</section>
 			<section>
@@ -419,13 +444,13 @@
 					Let's dive into a few examples
 				</section>
 				<section>
-					Sending chat
+					<h3>Secure E2E Chat</h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						// sender
 						myDataChannel.send("Hello");
 
 						// on the receiving side
-						this.myRtcConnection.ondatachannel = (event) => {
+						myRtcConnection.ondatachannel = (event) => {
 							receiveChannel.onmessage = (message) => {
 								// Display message
 							};
@@ -443,14 +468,14 @@
 						const fileSlice = file.slice(offset, offset + chunckSize);
 						fileReader.readAsArrayBuffer(fileSlice);
 						fileReader.onload = (event) => {
-							this.myDataChannel.send(event.target.result);
+							myDataChannel.send(event.target.result);
 						}
 
 						// on the receiving side
 						incommingFileBuffer.push(arrayBuffer);
 
 						// when done on the receiving side
-						var recivedFile = new Blob(this.incommingFileBuffer); 
+						var recivedFile = new Blob(incommingFileBuffer); 
 					</code></pre>
 					<aside class="notes" data-markdown>
 						- Break large files up into chunks (offset and chunckSize)
@@ -474,39 +499,38 @@
 					</aside>
 				</section>
 				<section>
-					Sharing a game state (drawing app)
+					<h3>Sharing a game state, like the drawing app</h3>
 				</section>
 			</section>
 			<section>
 				<section>
-					Large Data Channel Messages
+					<h3>Large Data Channel Messages</h3>
 				</section>
 				<section>
-					EOR<br>
-					End Of Record<br>
-					Is the message complete, or partial?
+					<h3>EOR (End Of Record)</h3>
+					<p class="fragment">
+						Is the message complete, or partial?
+					</p>
 					<aside class="notes" data-markdown>
 						- Chromium ignores that flag and simply delivers the incomplete message
 						- Partial ways arout it
 					</aside>
 				</section>
 				<section>
-					"Thanks to the new EOR feature Firefox now supports receiving up to 1 GiB messages."
+					<blockquote>
+						"Thanks to the new EOR feature Firefox now supports receiving up to 1 GiB messages."
+					</blockquote>
+					<p class="fragment">
+						Was aroind than 64 KiB
+					</p>
 					<aside class="notes" data-markdown>
-						- was less than 64 KiB
-						- Got unstable around here, suddenly closing the connection, or blocking all other data
+						- Got unstable around here (64kb), suddenly closing the connection, or blocking all other data
 						- Firefox is now ahead of Chrome
+						- Not more due to fit into RAM,and eaiser lost in transit
 					</aside>
 				</section>
 				<section>
-					Not higher as the entire object needs to fit into memory and 1gb is starting to become to high for some devices
-					due to low ram
-					<aside class="notes" data-markdown>
-						And larger messages are easilier lost in transmission (and at a higher cost)
-					</aside>
-				</section>
-				<section>
-					Is backward compatiable
+					<h3>Is backward compatiable</h3>
 				</section>
 			</section>
 			<section>
@@ -515,18 +539,41 @@
 					<iframe style="width: 700px; height: 580px;" src="https://caniuse.com/#search=webrtc"></iframe>
 					<aside class="notes" data-markdown>
 						- Edge does not have the data channel
-
-						- "Microsof is unhappy with the state of WebRTC and wants a bigger standard (Object RTC)"
+						- Microsof is unhappy with the state of WebRTC and wants a bigger standard (Object RTC)
 						- MS wants more control
 					</aside>
 				</section>
 				<section>
-					<h3>Browser diference</h3>
+					<h3>Let's talk about Safari</h3>
+					<p class="fragment">
+						Data channel issues
+					</p>
+					<blockquote class="fragment">
+						"Safari fails to establish a connection here unless getUserMedia is called"
+					</blockquote>
+					<blockquote class="fragment">
+						"Contrary to Chrome and Firefox, we do not leak private IP addresses access unless camera or microphone access is
+						also granted."
+					</blockquote>
+					<p class="fragment">
+						Only in safari on iOS
+					</p>
+					<!-- <h1>TODO SHOT FROM IFRAME</h1> -->
+					<iframe style="width: 700px; height: 580px;" src="https://bugs.webkit.org/show_bug.cgi?id=189503#c2"></iframe>
+					<aside class="notes" data-markdown>
+						- one of several data related bugs
+						- (might have changes) could
+						- Remember, Webkit/Apple’s implementation is young
+						- (might have changed) Webrtc only works insafari on ios, not in chrome on top of safari or webview
+					</aside>
+				</section>
+				<section>
+					<h3>Browser difference</h3>
 					<table>
 						<thead>
 							<tr>
 								<th>Browser</th>
-								<th>Quirck</th>
+								<th>Quirk</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -568,32 +615,21 @@
 					</table>
 				</section>
 				<section>
-					Microsoft Edge for Android
+					<h3>Microsoft Edge for Android</h3>
+					<img class="stretch" data-src="media/edge.JPG">
 					<aside class="notes" data-markdown>
-						0.1 score better than chrome...
-					</aside>
-				</section>
-				<section>
-					Safari and all the bugs
-					NO DATA CHANNEL WITHOUT VIDEO?!?!
-					"Safari fails to establish a connection here unless getUserMedia is called"
-					"Contrary to Chrome and Firefox, we do not leak private IP addresses access unless camera or microphone access is
-					also granted."
-					<h1>TODO SHOT FROM IFRAME</h1>
-					<iframe style="width: 700px; height: 580px;" src="https://bugs.webkit.org/show_bug.cgi?id=189503#c2"></iframe>
-					<aside class="notes" data-markdown>
-						- one of several data related bugs
-						- (might have changes) could
-						- Remember, Webkit/Apple’s implementation is young
-						- (might have changed) Webrtc only works insafari on ios, not in chrome on top of safari or webview
-
+						- 0.1 score better than chrome...
+						- might support data channel as its chromium(Blink)
+						- is on iOS as well
 					</aside>
 				</section>
 			</section>
 			<section>
 				<section>
-					<h2>Security</h2>
-					I read a 8k pice: "A Study of WebRTC Security"
+					<h3>Security</h3>
+					<p>
+						I read a 8k pice: "A Study of WebRTC Security"
+					</p>
 					Don't bother, its really good (inlude screenshot)<br>
 					The alternatives are less secure
 					"If I wanted to hack you, WebRTC would be the last place I’d start."
@@ -662,6 +698,7 @@
 				</section>
 			</section>
 			<section>
+				<!-- Needed? -->
 				Debugging WebRTC
 				<iframe style="width: 700px; height: 580px;" src="https://testrtc.com/"></iframe>
 			</section>
