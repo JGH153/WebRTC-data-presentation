@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>reveal.js</title>
+	<title>WebRTC Data</title>
 
 	<link rel="stylesheet" href="css/reveal.css">
 	<link rel="stylesheet" href="css/theme/league.css">
@@ -68,7 +68,7 @@
 			<section>
 				<h3>The journey to to data channel</h3>
 				<ul>
-					<li class="fragment">Basic WebRTC</li>
+					<li class="fragment">Basic WebRTC (intro)</li>
 					<li class="fragment">Story and demo</li>
 					<li class="fragment">Connecting users</li>
 					<li class="fragment">The Data channel</li>
@@ -104,51 +104,149 @@
 				</section>
 				<section>
 					<h3>Two browser can NOT contact each other directly</h3>
-					Need a signnaling server
+					<p class="fragment">
+						Need a signnaling server
+					</p>
 				</section>
 			</section>
 			<section>
-				Too few developers know WebRTC as the learning curve is a bit steep in the beginning
-				Img of "eve online lerning curve"?
+				<h3>Hickup in the lerning curve</h3>
+				<img style="max-height: 550px;" src="https://steamuserimages-a.akamaihd.net/ugc/488934701858391556/2DA4B3CF3132B1D3D7E0ED6C6DDFDE37B2578555/?interpolation=lanczos-none&output-format=jpeg&output-quality=95&fit=inside%7C2048%3A*">
 				<aside class="notes" data-markdown>
 					- Also is seems to be narrovly focues (just video conversations), but i'm here to prove thats wrong
+					- Lerning first time to connect is hard, then it's easier
+					- Connecting users; Either it's work or it's not.
 				</aside>
 			</section>
 			<section>
-				<section>
-					Creating the demo and prez was hard due to a dark force...
-				</section>
-				<section class="contain-bg-img" data-background="media/pondus/1.jpg"></section>
-				<section class="contain-bg-img" data-background="media/pondus/2.jpg"></section>
-				<section class="contain-bg-img" data-background="media/pondus/3.jpg"></section>
-				<section class="contain-bg-img" data-background="media/pondus/4.jpg"></section>
-				<section class="contain-bg-img" data-background="media/pondus/5.jpg"></section>
+				<iframe style="width: 700px; height: 580px;" src="https://www.w3.org/TR/webrtc/"></iframe>
 			</section>
 			<section>
 				<section>
-					How I learned WebRTC
+					<h3>
+						Has some difficulties creating this presentation
+					</h3>
+				</section>
+				<section class="contain-bg-img" data-background="media/pondus/1.jpg"></section>
+				<section class="contain-bg-img" data-background="media/pondus/5.jpg"></section>
+				<section class="contain-bg-img" data-background="media/pondus/2.jpg"></section>
+				<section class="contain-bg-img" data-background="media/pondus/3.jpg"></section>
+				<section class="contain-bg-img" data-background="media/pondus/4.jpg"></section>
+			</section>
+			<section>
+				<section>
+					<h2>How I lerned WebRTC</h2>
+					<h4 class="fragment">And found the mysterious data channel</h4>
 					<aside class="notes" data-markdown>
 						TODO add story notes
 					</aside>
 				</section>
+				<section>
+					One late night in 2017...
+					<aside class="notes" data-markdown>
+						- I was intrigued, but frustrated
+						- a few shalow tutorials
+						- Got mad that there was no really good tutorials
+					</aside>
+				</section>
+				<section>
+					Then I found a few with signaling
+					<aside class="notes" data-markdown>
+						- using our backend subscription solution
+						- Not the entire stack
+						- The singaling pars is the easy and cheap part!
+					</aside>
+				</section>
+				<section>
+					Then i found the one
+					<aside class="notes" data-markdown>
+						- old and outdated
+						- backend in node js
+						- had to fix a lot of deprications
+					</aside>
+				</section>
+				<section>
+					<h3>Connected!</h3>
+					<p class="fragment">
+						in as dirty was as possible
+					</p>
+					<aside class="notes" data-markdown>
+						- Now i was really engaged
+						- Re-made it in angular and updated all deprications
+						- All on Github
+					</aside>
+				</section>
+				<section>
+					<h3>Then i saw it in the distance</h3>
+					<p class="fragment">
+						The data channel
+					</p>
+					<aside class="notes" data-markdown>
+						- Was introduces like “oh, and by the way”
+						- looked inimportent, but could send anything...
+					</aside>
+				</section>
+				<section>
+					<h3>Data, Chat and Files</h3>
+					<aside class="notes" data-markdown>
+						- got chat working
+						- send files
+						- ok, cool, but premission is a blocker
+					</aside>
+				</section>
+				<section>
+					<img src="media/premission.JPG" style="max-height:600px;">
+					<aside class="notes" data-markdown>
+						- Wait a minute…
+						- We don’t need to ask for data channel…
+					</aside>
+				</section>
+				<section>
+					<h3>Limitless, permissionless potential</h3>
+				</section>
 			</section>
 			<section>
 				<section>
-					Demo!
+					<h2>Demo</h2>
 					<aside class="notes" data-markdown>
 						Drawing app. simple code and what it does. backend just pering as people connect.
 					</aside>
 				</section>
 				<section>
 					Frontend in Angular and backend in NodeJS
+					<aside class="notes" data-markdown>
+						- can be done in react, vue or pure JS
+						- backend can be in anything with websocets
+					</aside>
 				</section>
 				<section>
 					Code on github, can run all locally
 				</section>
+				<section>
+					<h3>How does it work</h3>
+					<ul>
+						<li class="fragment">Canvas for drawing</li>
+						<li class="fragment">Websocet for signaling</li>
+						<li class="fragment">Nodejs backed for matching</li>
+						<li class="fragment">Connect two users</li>
+						<li class="fragment">Send any draw event using WebRCT</li>
+					</ul>
+					<aside class="notes" data-markdown>
+						- Simple bakend
+						- some rxjs for easier dev
+					</aside>
+				</section>
 			</section>
 			<section>
 				<section>
-					How does WebRTC work? (theory, not code?)
+					<h2>A deeper dive into WebRTC</h2>
+				</section>
+				<section>
+					<h3>How does it work?</h3>
+					<aside class="notes" data-markdown>
+						- no a thourual overview, more key points and flow
+						- for Webrtc with video, audio and data
+					</aside>
 				</section>
 				<section>
 					Getting media...
@@ -166,13 +264,25 @@
 						const myRtcConnection = new RTCPeerConnection(configuration);
 					</code></pre>
 					<aside class="notes" data-markdown>
-						-STUN is used for finding your public IP and port for establishing a connection
+						- STUN is used for finding your public IP and port for establishing a connection
 					</aside>
 				</section>
 				<section>
+					Adding local strem to RTCPeerConnection
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						localVideoStream.getTracks().forEach((currentTrack: MediaStreamTrack) => {
+							this.myRtcConnection.addTrack(currentTrack);
+						});
+					</code></pre>
+					<aside class="notes" data-markdown>
+						- one track for video and one for audio
+					</aside>
+				</section>
+				<section>
+					Data channel
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						const options = {
-							reliable:true
+							// Reliable(ordered) is now default
 						};
 						const myDataChannel = myRtcConnection.createDataChannel("label", options)
 						myRtcConnection.ondatachannel = (event) => {
@@ -188,13 +298,18 @@
 				</section>
 				<section>
 					<h2>Connecting to another browser</h2>
-					<p class="fragment">Need to meed at a signaling server</p>
-					<p class="fragment">Does not tecnically need a signaling server</p>
-					<p class="fragment">Can use some pidgeon with a memory stick</p>
+					<p class="fragment">Meet at a signaling server</p>
+					<p class="fragment">Does not technically need a signaling server</p>
 					<p class="fragment">Suggest using WebSocket</p>
+					<aside class="notes" data-markdown>
+						- Saignaling/discovery 
+						- Can use some pidgeon with a memory stick
+						- just text info passed on
+						- can use http, but need fast duplex communication channel
+					</aside>
 				</section>
 				<section>
-					Call some user connected to the same backend
+					<h3>Time to make the call</h3>
 					<p class="fragment">
 						Create and send an offer (RTCSessionDescription)
 					</p>
@@ -209,7 +324,7 @@
 					</aside>
 				</section>
 				<section>
-					The other user then receives this from the backend and creates an answer (RTCSessionDescription)
+					<h3>Reponding with an answer</h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						myRtcConnection.setRemoteDescription(offer);
 						myRtcConnection.createAnswer((answer) => {
@@ -223,7 +338,7 @@
 					</code></pre>
 				</section>
 				<section>
-					Then a series of ICE candiates are sent back and forth (RTCIceCandidate)
+					<h3>Time for some ICE</h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						myRtcConnection.onicecandidate = (event) => {
 							sendMessageToServer(event.candidate, "Other User");
@@ -233,11 +348,12 @@
 					</code></pre>
 					<aside class="notes" data-markdown>
 						- For finding the shortest path between your two computers
+						- mapping out the network between you
 						- Interactive Connectivity Establishment (ICE)
 					</aside>
 				</section>
 				<section>
-					Then each client attempts to connect to each other
+					<h3>Time to connect</h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						// Automagick
 					</code></pre>
@@ -246,7 +362,7 @@
 					</p>
 				</section>
 				<section>
-					Video conversation etc...
+					TODO code for displaying other persons video strem
 				</section>
 				<section>
 					<h2>
@@ -315,6 +431,9 @@
 							};
 						};
 					</code></pre>
+					<aside class="notes" data-markdown>
+						- remember the chat is not stored anywhere. lost when closing. downside to E2E chat
+					</aside>
 				</section>
 				<section>
 					Sending files
@@ -444,8 +563,15 @@
 							- Safari initally refused data connection w/o video or audio. Reverted that decition
 							- UC for Android has no support (from china)
 							- Remember that all browser on iOS are just skins for safari
+							- Edge mobile (using Chromium)
 						</aside>
 					</table>
+				</section>
+				<section>
+					Microsoft Edge for Android
+					<aside class="notes" data-markdown>
+						0.1 score better than chrome...
+					</aside>
 				</section>
 				<section>
 					Safari and all the bugs
@@ -626,6 +752,11 @@
 					</aside>
 				</section>
 				<section>
+					<h2>Can use WebRTC for signaling!</h2>
+					Imadgine three users. A, B, C. A and B, and B and C are connected. (share B) <br>
+					Connecting A and C can be done using the shared connection to B
+				</section>
+				<section>
 					(call to action)<br>
 					Webrtc is a buldingblock for the web of tomorrow. You will need it, either for video or data, or both. <br>
 					We are aproaching av ever more connected future and WebRTC will help create that future
@@ -655,6 +786,7 @@
 				apper.in
 				<aside class="notes" data-markdown>
 					- Norwegian company, originale by Telenor, now sold to Videonor
+					- Norway is leading in Webrtc
 				</aside>
 			</section>
 			<section>
