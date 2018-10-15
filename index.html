@@ -77,6 +77,7 @@
 				<h2 class="no-caps">You don't need to know WebRTC</h2>
 			</section>
 			<section>
+				<!--  TODO fix order -->
 				<h3>The journey to to data channel</h3>
 				<ul>
 					<li class="fragment">Basic WebRTC (intro)</li>
@@ -214,6 +215,9 @@
 				</section>
 				<section>
 					<h3>Limitless, permissionless potential</h3>
+					<aside class="notes" data-markdown>
+						- and that the basis for this prez
+					</aside>
 				</section>
 			</section>
 			<section>
@@ -272,9 +276,13 @@
 				<section>
 					Setup RTCPeerConnection with a STUN server
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						const configuration = {
+							iceServers: [{ urls: 'stun:stun2.1.google.com:19302' }]
+						};
 						const myRtcConnection = new RTCPeerConnection(configuration);
 					</code></pre>
 					<aside class="notes" data-markdown>
+						- RTCPeerConnection is the master object for webrtc and connecting users
 						- STUN is used for finding your public IP and port for establishing a connection
 					</aside>
 				</section>
@@ -291,7 +299,7 @@
 				</section>
 				<section>
 					<!-- TODO move! -->
-					<h3>Handleling other users video when it arrives</h3>
+					<h3>Handleling other users video/audio when it arrives</h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						myRtcConnection.ontrack = (event) => {
 							// use event.streams (like video element)
@@ -301,6 +309,7 @@
 					<aside class="notes" data-markdown>
 						- event.streams is array of MediaStream
 						- MediaStream contains both video and audio
+						- just set it to a video element
 					</aside>
 				</section>
 				<section>
@@ -332,6 +341,9 @@
 						- just text info passed on
 						- can use http, but need fast duplex communication channel
 					</aside>
+				</section>
+				<section>
+					Slides on what a signaling server is?
 				</section>
 				<section>
 					<h3>Time to make the call</h3>
@@ -385,6 +397,9 @@
 					<p class="fragment">
 						Might fall back to TURN
 					</p>
+				</section>
+				<section>
+					<h1>🎉 Connected 🎉</h1>
 				</section>
 				<section>
 					<h2>
@@ -452,6 +467,9 @@
 						myRtcConnection.addTrack(...)
 						myRtcConnection.ontrack = (event) => { ... }
 					</code></pre>
+					<aside class="notes" data-markdown>
+						- you can show another persons video w/o premission???
+					</aside>
 				</section>
 			</section>
 
@@ -529,6 +547,7 @@
 				<section>
 					<h3>Large Data Channel Messages</h3>
 					<aside class="notes" data-markdown>
+						- why you break up files
 						- Was around than 64 KiB
 					</aside>
 				</section>
@@ -554,7 +573,7 @@
 					<aside class="notes" data-markdown>
 						- Got unstable around here (64kb), suddenly closing the connection, or blocking all other data
 						- Firefox is now ahead of Chrome
-						- Not more due to fit into RAM,and eaiser lost in transit
+						- Not more due to fit into RAM.
 					</aside>
 				</section>
 				<section>
@@ -641,6 +660,7 @@
 							</tr>
 						</tbody>
 						<aside class="notes" data-markdown>
+							- Edge data: It’s the 5’th highes requested feature to be added to edge (that's inn “under consideration”)
 							- Safari initally refused data connection w/o video or audio. Reverted that decition
 							- UC for Android has no support (from china)
 							- Remember that all browser on iOS are just skins for safari
@@ -657,6 +677,17 @@
 						- is on iOS as well
 					</aside>
 				</section>
+				<section>
+						<h3>🗡️ Chrome is killing background tabs! 🗡️</h3>
+						<p class="fragment">
+							But WebRTC is (mostly) safe
+						</p>
+						<aside class="notes" data-markdown>
+							- Applications with real-time connections (WebSockets and WebRTC), to avoid closing these connections by timeout.
+							The run-timers-once-a-second rule is still applied in these cases.
+							- Applications playing audio are considered foreground and aren’t throttled. (webRTC with audio)
+						</aside>
+					</section>
 			</section>
 			<section>
 				<section>
@@ -773,12 +804,12 @@
 			<section>
 				<section>
 					<h2>
-						Lates new for WebRTC
+						Lates new for WebRTC 📰
 					</h2>
 				</section>
 				<section>
 					<h3>
-							WebRTC is a Candidate Recommendation! 🎉
+						WebRTC is a Candidate Recommendation! 🎉
 					</h3>
 					<p>
 						As of 21 June 2018
@@ -789,19 +820,33 @@
 				</section>
 				<section>
 					<h3>
-						Transceiver
+						Deprication of AddStream
 					</h3>
-					New (and optional) way of having more control over how media flows between clients<br>
-					More control for more complexity
-					Don't learn it utill you master the standard (and easie) way
-					(as far as i know) it will remain optional and not become the standard
-					Transceiver will allow you to distinguish between several incommong video streams
-					Can start sending video befor negotiation has completed
-					Only in FF for now, comming to rest
+					<h3>
+						Replaced by AddTrack
+					</h3>
+					
+					<aside class="notes" data-markdown>
+						- WebRTC now support multible streams (video/audio) from each user<br>
+						- Data channel has always supported multible, but they could force sending in sequence on large messages
+					</aside>
 				</section>
 				<section>
-					AddStream is replaced by AddTrack as WebRTC now support multible streams (video/audio) from each user<br>
-					Data channel has always supported multible, but they could force sending in sequence on large messages
+					<h3>
+						Transceiver
+					</h3>
+					<ul>
+						<li class="fragment">New (and optional) way of having more control over how media flows between clients</li>
+						<li class="fragment">More control for more complexity</li>
+						<li class="fragment">Can start sending video befor negotiation has completed</li>
+						<li class="fragment">Transceiver will allow you to distinguish between several incommong video streams</li>
+					</ul>			
+					
+					<aside class="notes" data-markdown>
+						- Don't learn it utill you master the standard (and easie) way
+						- (as far as i know) it will remain optional and not become the standard
+						- Only in FF for now, comming to rest
+					</aside>
 				</section>
 				<section>
 					<h3 class="no-caps">RTCRtpTransceiver.direction</h3>
@@ -833,77 +878,103 @@
 					</table>
 
 				</section>
-				<section>
-					Unified Plan VS Plan B
+				<!-- <section>
+					<h3>Unified Plan VS Plan B</h3>
 					The fingt for how to send multible video streams
 					<aside class="notes" data-markdown>
 						- Unified Plan win (in FF)
 						- Plan B lost (in chrome, will be replaced)
 						- For sending multible video stresm like cameras and screens
 					</aside>
-				</section>
+				</section> -->
 			</section>
 			<section>
 				<section>
-					Just a few short ideas, there are MANY more usecases for sending data directly bvetween one or more browsers
+					<h3>
+						Time for a few random ideas for you
+					</h3>
+					<p>
+						Are many, many more
+					</p>
 				</section>
 				<section>
-					Got sad when you relised that the broadcast API is limited to a browser? <br>
-					Use the data channel to link up more web browser on the same machene!
-				</section>
-				<section>
-					Allow you to view this prez live on nour phone as i present? WEBRTC!
-				</section>
-				<section>
-					Offloading data transmition to the frontend
-					<br>
-					Servers are (relativly) expencive
-					<br>
-					Using WebRTC offloads a lot of bandwith off the server
+					<h3>Cross browser Broadcast Channel</h3>
+
 					<aside class="notes" data-markdown>
-						- Can do far bigger, faster and more reliable data transfers between clients as server is not overloaded
+						- Got sad when you relised that the broadcast API is limited to a browser? <br>
+						- Use the data channel to link up more web browser on the same machene!
 					</aside>
 				</section>
 				<section>
-					<h2>Can use WebRTC for signaling!</h2>
-					Imadgine three users. A, B, C. A and B, and B and C are connected. (share B) <br>
-					Connecting A and C can be done using the shared connection to B
+					<h3>Live, shared, presentation</h3>
+					<aside class="notes" data-markdown>
+						Connect to a presentation and view it live using your phone
+					</aside>
 				</section>
 				<section>
-					(call to action)<br>
-					Webrtc is a buldingblock for the web of tomorrow. You will need it, either for video or data, or both. <br>
-					We are aproaching av ever more connected future and WebRTC will help create that future
+					<h3>
+						Offloading data transmition to the frontend
+					</h3>
+					<p>
+						Servers are (relativly) expencive
+					</p>
+					<aside class="notes" data-markdown>
+						- Can do far bigger, faster and more reliable data transfers between clients as server is not overloaded
+						- Using WebRTC offloads a lot of bandwith off the server
+					</aside>
+				</section>
+				<section>
+					<h3>Can use WebRTC for signaling</h3>
+					<p>
+						Imagine a user (A) that's connected to two friends (B and C)<br>
+						They (B and C) can connect to each other using B as a realy
+					</p>
+					<aside class="notes" data-markdown>
+						- can use for reconnecting lost connections if server go down
+					</aside>
+				</section>
+				<section>
+					<h3>Most examples can be solved using a server</h3>
+					<h4>But now we have a direct option</h4>
+					<aside class="notes" data-markdown>
+
+					</aside>
+				</section>
+				<section>
+					<h3>Webrtc is a buldingblock for the web of tomorrow</h3>
+					<h3 class="fragment">You will need it, either for video or data, or both</h3>
+					<h3 class="fragment">We are aproaching av ever more connected future and WebRTC will help create that future</h3>
+					<aside class="notes" data-markdown>
+						- connecting users w/o needing premission opens for insane new ideas
+					</aside>
 				</section>
 			</section>
 			<section>
-				<h3>Chrome is killing background tabs</h3>
-				(murder img?)
-				There is hope!
-				WebRTC connections are (mostly exempted)
-				<aside class="notes" data-markdown>
-					- Applications with real-time connections (WebSockets and WebRTC), to avoid closing these connections by timeout.
-					The run-timers-once-a-second rule is still applied in these cases.
-					- Applications playing audio are considered foreground and aren’t throttled. (webRTC with audio)
-				</aside>
+				<h3>
+					Remember, it's gratis!
+				</h3>
+				<h5 class="fragment">
+					(exept for signaling and turn)
+				</h5>
+				<blockquote class="fragment">
+					"in almost all cases, using WebRTC will cost you less and get you there faster than the alternatives"
+				</blockquote>
 			</section>
 			<section>
-				Remember, it's gratis
-				(exept for signaling and turn)
-				"in almost all cases, using WebRTC will cost you less and get you there faster than the alternatives"
-			</section>
-			<section>
-				Remember Webrtc is a tool, not a solution
+				<h3>
+					Remember Webrtc is a tool, not a solution
+				</h3>
 			</section>
 			<section>
 				<h3>Quick example of webRTC in action?</h3>
-				apper.in
+				<h3>appear.in</h3>
 				<aside class="notes" data-markdown>
 					- Norwegian company, originale by Telenor, now sold to Videonor
 					- Norway is leading in Webrtc
 				</aside>
 			</section>
 			<section>
-				https://blog.mozilla.org/webrtc/<br>
+				<h3>https://blog.mozilla.org/webrtc/</h3>
 				<img class="webrtc-logo-img" src="media/ffWebrtcblog.JPG">
 			</section>
 			<section>
@@ -915,7 +986,10 @@
 				</p>
 			</section>
 			<section>
-				Questions
+				<h1>The end for our Journey</h1>
+			</section>
+			<section>
+				<h1>Questions?</h1>
 			</section>
 			<section>
 				This page is unintentionally left blank
