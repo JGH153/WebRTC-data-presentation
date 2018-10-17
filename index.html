@@ -37,8 +37,13 @@
 		h5 {
 			text-transform: none !important;
 		}
-		.black-stroke{
+
+		.black-stroke {
 			-webkit-text-stroke: 2px black;
+		}
+
+		.black-stroke-thin {
+			-webkit-text-stroke: 1px black;
 		}
 	</style>
 
@@ -74,22 +79,25 @@
 			</section>
 			<section>
 				<img class="webrtc-logo-img" src="media/webrtc-logo-horiz-retro-dist.svg">
-				<h2 class="no-caps fragment fade-right">Featuring the unstobbable Data Channel!</h2>
+				<h2 class=" fragment fade-right">Featuring the unstobbable Data Channel!</h2>
 			</section>
-			<section>
-				<h2 class="no-caps">You don't need to know WebRTC</h2>
+			<section data-background="media/stock/exploring.jpeg">
+				<h2 class="fragment black-stroke">You don't need to know WebRTC</h2>
+				<aside class="notes" data-markdown>
+					- we are exploring and you don need to know webrtc
+				</aside>
 			</section>
-			<section>
+			<section data-background="media/stock/adventureStart.jpeg">
+				<h2 class="fragment black-stroke">The journey to to data channel</h2>
 				<!--  TODO fix order -->
-				<h3>The journey to to data channel</h3>
 				<ul>
-					<li class="fragment">Basic WebRTC (intro)</li>
-					<li class="fragment">Story and demo</li>
-					<li class="fragment">Connecting users</li>
-					<li class="fragment">The Data channel</li>
-					<li class="fragment">News</li>
-					<li class="fragment">Browser support</li>
-					<li class="fragment">Call to action</li>
+					<li class="fragment black-stroke-thin">Basic WebRTC (intro)</li>
+					<li class="fragment black-stroke-thin">Story and demo</li>
+					<li class="fragment black-stroke-thin">Connecting users</li>
+					<li class="fragment black-stroke-thin">The Data channel</li>
+					<li class="fragment black-stroke-thin">Browser support</li>
+					<li class="fragment black-stroke-thin">News</li>
+					<li class="fragment black-stroke-thin">Call to action</li>
 				</ul>
 				<aside class="notes" data-markdown>
 					- Outline
@@ -274,7 +282,7 @@
 				<section>
 					Getting media...
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
-						navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+						navigator.mediaDevices.getUserMedia({ video: true, audio: true })
 						.then(function(mediaStream) {
 							var video = document.querySelector('video');
 							video.srcObject = mediaStream;
@@ -306,14 +314,12 @@
 					</aside>
 				</section>
 				<section>
-					<!-- TODO move! -->
 					<h3>Handleling other users video/audio when it arrives</h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						myRtcConnection.ontrack = (event) => {
 							// use event.streams (like video element)
 						}
 					</code></pre>
-
 					<aside class="notes" data-markdown>
 						- event.streams is array of MediaStream
 						- MediaStream contains both video and audio
@@ -406,8 +412,8 @@
 						Might fall back to TURN
 					</p>
 				</section>
-				<section>
-					<h1>🎉 Connected 🎉</h1>
+				<section data-background="media/stock/celebrate.jpeg">
+					<h1>Connected!</h1>
 				</section>
 				<section>
 					<h2>
@@ -440,8 +446,8 @@
 			</section>
 
 			<section>
-				<section>
-					<h3>Diving into the data channel</h3>
+				<section data-background="media/stock/diving.jpeg">
+					<h2 class="fragment black-stroke">Diving into the data channel</h2>
 				</section>
 				<section>
 					<h3>Can send almost anything</h3>
@@ -460,7 +466,8 @@
 					</ul>
 				</section>
 				<section>
-					<h3>With no asking for premission</h3>
+					<!-- TODO BG? -->
+					<h2>Without asking for permission</h2>
 				</section>
 				<section>
 					<h3>How to connect using only data channel</h3>
@@ -545,10 +552,17 @@
 				</section>
 				<section>
 					<h3>Sharing a game state</h3>
-					<p>
+					<p class="fragment">
 						Like the drawing app
 					</p>
-					TODO CODE!
+					<p class="fragment">
+						Sending entire state VS state change
+					</p>
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						myDataChannel.send(JSON.stringify(gameState));
+						VS
+						myDataChannel.send(JSON.stringify(stateChange));
+					</code></pre>
 				</section>
 			</section>
 			<section>
@@ -574,7 +588,6 @@
 					<blockquote>
 						"Thanks to the new EOR feature Firefox now supports receiving up to 1 GiB messages."
 					</blockquote>
-					<h3 class="fragment">Each message can be 1GiB!</h3>
 					<p class="fragment">
 						Was around than 64 KiB
 					</p>
@@ -585,14 +598,15 @@
 					</aside>
 				</section>
 				<section>
-					<h3>Is backward compatiable</h3>
+					<h3>It's backward compatible</h3>
 				</section>
 			</section>
 			<section>
-				<section>
-					<h3>Browser support</h3>
-					<iframe style="width: 1100px; height: 580px;" src="https://caniuse.com/#search=webrtc"></iframe>
+				<section data-background="media/stock/elephant.jpeg">
+					<h2 class="fragment black-stroke">Browser support</h2>
+					<iframe class="fragment" style="width: 1100px; height: 520px;" src="https://caniuse.com/#search=webrtc"></iframe>
 					<aside class="notes" data-markdown>
+						- Let's talk about the elephan in the room
 						- Edge does not have the data channel
 						- Microsof is unhappy with the state of WebRTC and wants a bigger standard (Object RTC)
 						- MS wants more control
@@ -602,9 +616,6 @@
 					<h3>Let's talk about Safari</h3>
 					<p class="fragment">
 						It's experimental and buggy
-					</p>
-					<p class="fragment">
-						Data channel issues
 					</p>
 					<blockquote class="fragment">
 						"Safari fails to establish a connection unless getUserMedia is called"
@@ -622,6 +633,7 @@
 					<!-- <h1>TODO SHOT FROM IFRAME</h1> -->
 					<iframe style="width: 700px; height: 580px;" src="https://bugs.webkit.org/show_bug.cgi?id=189503#c2"></iframe>
 					<aside class="notes" data-markdown>
+						- It's experimental and buggy
 						- one of several data related bugs
 						- (might have changes) could
 						- Remember, Webkit/Apple’s implementation is young
@@ -669,10 +681,7 @@
 						</tbody>
 						<aside class="notes" data-markdown>
 							- Edge data: It’s the 5’th highes requested feature to be added to edge (that's inn “under consideration”)
-							- Safari initally refused data connection w/o video or audio. Reverted that decition
-							- UC for Android has no support (from china)
 							- Remember that all browser on iOS are just skins for safari
-							- Edge mobile (using Chromium)
 						</aside>
 					</table>
 				</section>
@@ -722,23 +731,12 @@
 						- It gets updated every 6-8 weeks with your browser
 					</aside>
 				</section>
-				<!-- <section>
-					<h2>Privacy</h2>
-					Can use data channel without premission, but really no privacy issue exept for public IP
-					"in Firefox 60, whenever you video-mute, your laptop or USB camera hardware light will now extinguish"
-					<aside class="notes" data-markdown>
-						- Scary to be seen. User NEEDS to know when thay are streaming video
-					</aside>
-				</section> -->
-				<!-- <section>
-					Webrtc and STUN gets your public IP. is that bad?
-				</section> -->
 			</section>
 			<section>
-				<section>
-					<h2>
+				<section data-background="media/stock/roomSize.jpeg">
+					<h1 class="fragment black-stroke">
 						Room size
-					</h2>
+					</h1>
 					<aside class="notes" data-markdown>
 						- How many connected users?
 					</aside>
@@ -810,8 +808,8 @@
 				<iframe style="width: 700px; height: 580px;" src="https://testrtc.com/"></iframe>
 			</section> -->
 			<section>
-				<section>
-					<h2>
+				<section data-background="media/stock/news.jpeg">
+					<h2 class="fragment black-stroke">
 						Lates new for WebRTC 📰
 					</h2>
 				</section>
@@ -830,7 +828,7 @@
 					<h3>
 						Deprication of AddStream
 					</h3>
-					<h3>
+					<h3 class="fragment">
 						Replaced by AddTrack
 					</h3>
 
@@ -886,32 +884,12 @@
 					</table>
 
 				</section>
-				<!-- <section>
-					<h3>Unified Plan VS Plan B</h3>
-					The fingt for how to send multible video streams
-					<aside class="notes" data-markdown>
-						- Unified Plan win (in FF)
-						- Plan B lost (in chrome, will be replaced)
-						- For sending multible video stresm like cameras and screens
-					</aside>
-				</section> -->
 			</section>
 			<section>
-				<section>
-					<h3>
-						Time for a few random ideas for you
-					</h3>
-					<p>
-						Are many, many more
-					</p>
-				</section>
-				<section>
-					<h3>Cross browser Broadcast Channel</h3>
-
-					<aside class="notes" data-markdown>
-						- Got sad when you relised that the broadcast API is limited to a browser? <br>
-						- Use the data channel to link up more web browser on the same machene!
-					</aside>
+				<section data-background="media/stock/inspire.jpg">
+					<h2 class="fragment black-stroke">
+						Data Channel ideas
+					</h2>
 				</section>
 				<section>
 					<h3>Live, shared, presentation</h3>
@@ -932,12 +910,18 @@
 					</aside>
 				</section>
 				<section>
-					<h3>Can use WebRTC for signaling</h3>
-					<p>
-						Imagine a user (A) that's connected to two friends (B and C)<br>
-						They (B and C) can connect to each other using B as a realy
-					</p>
+					<h3>Cross browser Broadcast Channel</h3>
+
 					<aside class="notes" data-markdown>
+						- Got sad when you relised that the broadcast API is limited to a browser? <br>
+						- Use the data channel to link up more web browser on the same machene!
+					</aside>
+				</section>
+				<section>
+					<h3>Can use WebRTC for signaling</h3>
+					<img class="stretch" data-src="media/webrtcdatsignal.png">
+					<aside class="notes" data-markdown>
+						- use A as a relay
 						- can use for reconnecting lost connections if server go down
 					</aside>
 				</section>
@@ -950,7 +934,7 @@
 				</section>
 				<section>
 					<h3>Webrtc is a buldingblock for the web of tomorrow</h3>
-					<h3 class="fragment">You will need it, either for video or data, or both</h3>
+					<h3 class="fragment">You will need it, for video, audio or data</h3>
 					<h3 class="fragment">We are aproaching av ever more connected future and WebRTC will help create that future</h3>
 					<aside class="notes" data-markdown>
 						- connecting users w/o needing premission opens for insane new ideas
@@ -958,29 +942,29 @@
 				</section>
 			</section>
 			<section>
-				<h3>
-					Remember, it's gratis!
-				</h3>
-				<h5 class="fragment">
+				<h2>
+					It's gratis!
+				</h2>
+				<h3 class="fragment">
 					(exept for signaling and turn)
-				</h5>
+				</h3>
 				<blockquote class="fragment">
 					"in almost all cases, using WebRTC will cost you less and get you there faster than the alternatives"
 				</blockquote>
 			</section>
 			<section>
-				<h3>
-					Remember Webrtc is a tool, not a solution
-				</h3>
+				<h2>
+					Webrtc is a tool, not a solution
+				</h2>
 			</section>
-			<section>
+			<!-- <section>
 				<h3>Quick example of webRTC in action?</h3>
 				<h3>appear.in</h3>
 				<aside class="notes" data-markdown>
 					- Norwegian company, originale by Telenor, now sold to Videonor
 					- Norway is leading in Webrtc
 				</aside>
-			</section>
+			</section> -->
 			<section>
 				<h3>https://blog.mozilla.org/webrtc/</h3>
 				<img class="webrtc-logo-img" src="media/ffWebrtcblog.JPG">
@@ -993,11 +977,11 @@
 					(github.com/webrtchacks/adapter)
 				</p>
 			</section>
-			<section>
-				<h1>The end for our Journey</h1>
+			<section data-background="media/stock/adventureOver.jpeg">
+				<h1 class="fragment">The end for our Journey</h1>
 			</section>
-			<section>
-				<h1>Questions?</h1>
+			<section data-background="media/stock/questions.jpeg">
+				<h1 class="fragment">Questions?</h1>
 			</section>
 			<section>
 				This page is unintentionally left blank

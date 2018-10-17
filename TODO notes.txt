@@ -1,0 +1,19 @@
+Notes
+
+bf for "A deeper dive into WebRT"
+
+share screen go over video insted dof data???
+
+FIX "With no asking for premission" (BG?  AND SHORTER)
+
+Sharing screen WILL PROMT USER (ADD NODE)
+
+Sharing a game state todo
+
+capitalize turn in gratis'
+
+json decode on reciver draw state
+
+fix befor slelling
+
+spelling: Transceiver
