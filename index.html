@@ -37,6 +37,9 @@
 		h5 {
 			text-transform: none !important;
 		}
+		.black-stroke{
+			-webkit-text-stroke: 2px black;
+		}
 	</style>
 
 	<!-- Theme used for syntax highlighting of code -->
@@ -88,6 +91,9 @@
 					<li class="fragment">Browser support</li>
 					<li class="fragment">Call to action</li>
 				</ul>
+				<aside class="notes" data-markdown>
+					- Outline
+				</aside>
 			</section>
 			<section>
 				<section>
@@ -111,7 +117,8 @@
 					<h5>Communicate directly</h5>
 					<img class="stretch" data-src="media/p2p.png">
 					<aside class="notes" data-markdown>
-						-Cutting the middle man is what amazon is doing
+						- Cutting the middle man is what amazon is doing
+						- this is P2P
 					</aside>
 				</section>
 				<section>
@@ -150,56 +157,57 @@
 					<h2>How I learned WebRTC</h2>
 					<h4 class="fragment">And found the mysterious data channel</h4>
 					<aside class="notes" data-markdown>
-						TODO add story notes
+						- you might have the same experiences
 					</aside>
 				</section>
-				<section>
-					One late night in 2017...
+				<section class="" data-background="media/stock/latenight2.jpeg">
+					<h2 class="fragment black-stroke">One late night in 2017...</h2>
 					<aside class="notes" data-markdown>
+						- i was late to the party
 						- I was intrigued, but frustrated
-						- a few shalow tutorials
+						- a few shallow tutorials
 						- Got mad that there was no really good tutorials
 					</aside>
 				</section>
-				<section>
-					Then I found a few with signaling
+				<section data-background="media/stock/thinking.jpeg">
+					<h2 class="fragment black-stroke">Then I found a few with signaling</h2>
 					<aside class="notes" data-markdown>
 						- using our backend subscription solution
 						- Not the entire stack
 						- The singaling pars is the easy and cheap part!
 					</aside>
 				</section>
-				<section>
-					Then i found the one
+				<section data-background="media/stock/theone.jpeg">
+					<h2 class="fragment black-stroke">Then I found the one</h2>
 					<aside class="notes" data-markdown>
 						- old and outdated
 						- backend in node js
 						- had to fix a lot of deprications
 					</aside>
 				</section>
-				<section>
-					<h3>Connected!</h3>
-					<p class="fragment">
+				<section data-background="media/stock/success.jpg">
+					<h1 class="fragment black-stroke">Connected!</h1>
+					<h3 class="fragment black-stroke">
 						in as dirty was as possible
-					</p>
+					</h3>
 					<aside class="notes" data-markdown>
 						- Now i was really engaged
 						- Re-made it in angular and updated all deprications
 						- All on Github
 					</aside>
 				</section>
-				<section>
-					<h3>Then i saw it in the distance</h3>
-					<p class="fragment">
+				<section data-background="media/stock/mysterious.jpg">
+					<h2 class="fragment black-stroke">Then I saw it in the distance</h2>
+					<h3 class="fragment black-stroke">
 						The data channel
-					</p>
+					</h3>
 					<aside class="notes" data-markdown>
 						- Was introduces like “oh, and by the way”
-						- looked inimportent, but could send anything...
+						- looked unimportant, but could send anything...
 					</aside>
 				</section>
-				<section>
-					<h3>Data, Chat and Files</h3>
+				<section data-background="media/stock/mysterious.jpg">
+					<h2 class="fragment black-stroke">Data, Chat and Files</h2>
 					<aside class="notes" data-markdown>
 						- got chat working
 						- send files
@@ -213,8 +221,8 @@
 						- We don’t need to ask for data channel…
 					</aside>
 				</section>
-				<section>
-					<h3>Limitless, permissionless potential</h3>
+				<section data-background="media/stock/celebrate.jpeg">
+					<h2 class="black-stroke">Limitless, permissionless potential</h2>
 					<aside class="notes" data-markdown>
 						- and that the basis for this prez
 					</aside>
@@ -678,16 +686,16 @@
 					</aside>
 				</section>
 				<section>
-						<h3>🗡️ Chrome is killing background tabs! 🗡️</h3>
-						<p class="fragment">
-							But WebRTC is (mostly) safe
-						</p>
-						<aside class="notes" data-markdown>
-							- Applications with real-time connections (WebSockets and WebRTC), to avoid closing these connections by timeout.
-							The run-timers-once-a-second rule is still applied in these cases.
-							- Applications playing audio are considered foreground and aren’t throttled. (webRTC with audio)
-						</aside>
-					</section>
+					<h3>🗡️ Chrome is killing background tabs! 🗡️</h3>
+					<p class="fragment">
+						But WebRTC is (mostly) safe
+					</p>
+					<aside class="notes" data-markdown>
+						- Applications with real-time connections (WebSockets and WebRTC), to avoid closing these connections by timeout.
+						The run-timers-once-a-second rule is still applied in these cases.
+						- Applications playing audio are considered foreground and aren’t throttled. (webRTC with audio)
+					</aside>
+				</section>
 			</section>
 			<section>
 				<section>
@@ -825,7 +833,7 @@
 					<h3>
 						Replaced by AddTrack
 					</h3>
-					
+
 					<aside class="notes" data-markdown>
 						- WebRTC now support multible streams (video/audio) from each user<br>
 						- Data channel has always supported multible, but they could force sending in sequence on large messages
@@ -840,8 +848,8 @@
 						<li class="fragment">More control for more complexity</li>
 						<li class="fragment">Can start sending video befor negotiation has completed</li>
 						<li class="fragment">Transceiver will allow you to distinguish between several incommong video streams</li>
-					</ul>			
-					
+					</ul>
+
 					<aside class="notes" data-markdown>
 						- Don't learn it utill you master the standard (and easie) way
 						- (as far as i know) it will remain optional and not become the standard
