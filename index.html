@@ -269,8 +269,8 @@
 				</section>
 			</section>
 			<section>
-				<section>
-					<h2>A deeper dive into WebRTC</h2>
+				<section data-background="media/stock/mountanSky.jpeg">
+					<h2 class="fragment black-stroke">A deeper dive into WebRTC</h2>
 				</section>
 				<section>
 					<h3>How does it work?</h3>
@@ -502,10 +502,8 @@
 						myDataChannel.send("Hello");
 
 						// on the receiving side
-						myRtcConnection.ondatachannel = (event) => {
-							receiveChannel.onmessage = (message) => {
-								// Display message
-							};
+						receiveChannel.onmessage = (message) => {
+							// Display message
 						};
 					</code></pre>
 					<aside class="notes" data-markdown>
@@ -548,6 +546,8 @@
 					<aside class="notes" data-markdown>
 						- Comming to rest. Might already be out for some
 						- Might miss target of chrome 70
+						- will promt
+						- will be sandt as vido
 					</aside>
 				</section>
 				<section>
@@ -559,9 +559,13 @@
 						Sending entire state VS state change
 					</p>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
-						myDataChannel.send(JSON.stringify(gameState));
-						VS
-						myDataChannel.send(JSON.stringify(stateChange));
+						// send
+						myDataChannel.send(JSON.stringify(completeState or stateChange));
+						
+						// reciver
+						receiveChannel.onmessage = (messageEvent) => {
+							const state = JSON.parse(messageEvent.data);
+						}
 					</code></pre>
 				</section>
 			</section>
@@ -824,7 +828,7 @@
 						- Means it started to stabilise and will see wider and better support
 					</aside>
 				</section>
-				<section>
+				<!-- <section>
 					<h3>
 						Deprication of AddStream
 					</h3>
@@ -836,6 +840,15 @@
 						- WebRTC now support multible streams (video/audio) from each user<br>
 						- Data channel has always supported multible, but they could force sending in sequence on large messages
 					</aside>
+				</section> -->
+				<section>
+					<h3>Getting screen without plugin</h3>
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
+						navigator.getDisplayMedia({ video: true })
+						.then(function(mediaStream) {
+							...
+						}
+					</code></pre>
 				</section>
 				<section>
 					<h3>
@@ -844,11 +857,13 @@
 					<ul>
 						<li class="fragment">New (and optional) way of having more control over how media flows between clients</li>
 						<li class="fragment">More control for more complexity</li>
-						<li class="fragment">Can start sending video befor negotiation has completed</li>
+						<li class="fragment">Can start sending video before negotiation has completed</li>
 						<li class="fragment">Transceiver will allow you to distinguish between several incommong video streams</li>
 					</ul>
 
+
 					<aside class="notes" data-markdown>
+						- TRANS CEVER
 						- Don't learn it utill you master the standard (and easie) way
 						- (as far as i know) it will remain optional and not become the standard
 						- Only in FF for now, comming to rest
