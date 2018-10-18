@@ -105,11 +105,11 @@
 			</section>
 			<section>
 				<section>
-					<h2>What is WebRTC in a nutshell?</h2>
+					<h2>What is WebRTC, in a nutshell?</h2>
 					<ul>
 						<li class="fragment">Direct browser to browser communication API</li>
 						<li class="fragment">API for real time communication</li>
-						<li class="fragment">Websocet directly between browsers</li>
+						<li class="fragment">Websocket directly between browsers</li>
 						<li class="fragment">Channels for video, audio and data</li>
 						<li class="fragment">Media engine</li>
 						<li class="fragment">API for making skype in the browser</li>
@@ -132,16 +132,17 @@
 				<section>
 					<h3>Two browser can NOT contact each other directly</h3>
 					<p class="fragment">
-						Need a signnaling server
+						- Need a signaling server
+						- to exchange metadata to coordinate communication
 					</p>
 				</section>
 			</section>
 			<section>
-				<h3>Hickup in the lerning curve</h3>
+				<h3>Hiccup in the learning curve</h3>
 				<img style="max-height: 550px;" src="https://steamuserimages-a.akamaihd.net/ugc/488934701858391556/2DA4B3CF3132B1D3D7E0ED6C6DDFDE37B2578555/?interpolation=lanczos-none&output-format=jpeg&output-quality=95&fit=inside%7C2048%3A*">
 				<aside class="notes" data-markdown>
 					- Also is seems to be narrovly focues (just video conversations), but i'm here to prove thats wrong
-					- Lerning first time to connect is hard, then it's easier
+					- Learning first time to connect is hard, then it's easier
 					- Connecting users; Either it's work or it's not.
 				</aside>
 			</section>
@@ -240,24 +241,27 @@
 				<section data-background="media/stock/demo.jpeg">
 					<h2 class="fragment black-stroke">Demo</h2>
 					<aside class="notes" data-markdown>
-						Drawing app. simple code and what it does. backend just pering as people connect.
+						Drawing app. simple code and what it does. backend just pairing as people connect.
 					</aside>
 				</section>
 				<section>
-					Frontend in Angular and backend in NodeJS
+					<h3>Code on github, can run all locally</h3>
+					<p>
+						github.com/JGH153/webrtc
+					</p>
+				</section>
+				<section>
+					<h3>Frontend in Angular and backend in NodeJS</h3>
 					<aside class="notes" data-markdown>
 						- can be done in react, vue or pure JS
-						- backend can be in anything with websocets
+						- backend can be in anything with Websockets
 					</aside>
-				</section>
-				<section>
-					Code on github, can run all locally
 				</section>
 				<section>
 					<h3>How does it work</h3>
 					<ul>
 						<li class="fragment">Canvas for drawing</li>
-						<li class="fragment">Websocet for signaling</li>
+						<li class="fragment">Websocket for signaling</li>
 						<li class="fragment">Nodejs backed for matching</li>
 						<li class="fragment">Connect two users</li>
 						<li class="fragment">Send any draw event using WebRCT</li>
@@ -303,7 +307,7 @@
 					</aside>
 				</section>
 				<section>
-					Adding local strem to RTCPeerConnection
+					Adding local stream to RTCPeerConnection
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						localVideoStream.getTracks().forEach((currentTrack: MediaStreamTrack) => {
 							myRtcConnection.addTrack(currentTrack);
@@ -314,7 +318,7 @@
 					</aside>
 				</section>
 				<section>
-					<h3>Handleling other users video/audio when it arrives</h3>
+					<h3>Handling the other users video/audio when it arrives</h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						myRtcConnection.ontrack = (event) => {
 							// use event.streams (like video element)
@@ -350,15 +354,13 @@
 					<p class="fragment">Does not technically need a signaling server</p>
 					<p class="fragment">Suggest using WebSocket</p>
 					<aside class="notes" data-markdown>
-						- Saignaling/discovery
-						- Can use some pidgeon with a memory stick
+						- Signaling/discovery
+						- Can use some pigeon with a memory stick
 						- just text info passed on
 						- can use http, but need fast duplex communication channel
 					</aside>
 				</section>
-				<section>
-					Slides on what a signaling server is?
-				</section>
+				<!-- TODO slide with illustaration of two user connected to signaling server, but missing connection between them -->
 				<section>
 					<h3>Time to make the call</h3>
 					<p class="fragment">
@@ -375,7 +377,7 @@
 					</aside>
 				</section>
 				<section>
-					<h3>Reponding with an answer</h3>
+					<h3>Responding with an answer</h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						myRtcConnection.setRemoteDescription(offer);
 						myRtcConnection.createAnswer((answer) => {
@@ -413,7 +415,7 @@
 					</p>
 				</section>
 				<section data-background="media/stock/celebrate.jpeg">
-					<h1>Connected!</h1>
+					<h1 class="black-stroke">Connected!</h1>
 				</section>
 				<section>
 					<h2>
@@ -450,7 +452,7 @@
 					<h2 class="fragment black-stroke">Diving into the data channel</h2>
 				</section>
 				<section>
-					<h3>Can send almost anything</h3>
+					<h3>Can send (almost) anything</h3>
 					<aside class="notes" data-markdown>
 						- USVString (so JSON), a Blob, an ArrayBuffer, or an ArrayBufferView
 					</aside>
@@ -461,16 +463,22 @@
 						<li class="fragment">Sending chat</li>
 						<li class="fragment">Sending files</li>
 						<li class="fragment">Sending state (game, redux, drawing, ...)</li>
-						<li class="fragment">Sending screen</li>
+						<!-- <li class="fragment">Sending screen</li> -->
+						<li class="fragment">Bit torrent</li>
+						<li class="fragment">Data streaming</li>
+						<li class="fragment">Decentralized computing</li>
 						<li class="fragment">CDN</li>
 					</ul>
+					<aside class="notes" data-markdown>
+						- game state for chess for example
+					</aside>
 				</section>
 				<section>
 					<!-- TODO BG? -->
-					<h2>Without asking for permission</h2>
+					<h1>Without asking for permission</h1>
 				</section>
 				<section>
-					<h3>How to connect using only data channel</h3>
+					<h2>How to connect using only the data channel</h2>
 					<p class="fragment">
 						Same as before, just with some changes
 					</p>
@@ -479,7 +487,11 @@
 					<h3>Remove the following code</h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						navigator.mediaDevices.getUserMedia( ... ) .then{ ... }
+					</code></pre>
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						myRtcConnection.addTrack(...)
+					</code></pre>
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						myRtcConnection.ontrack = (event) => { ... }
 					</code></pre>
 					<aside class="notes" data-markdown>
@@ -490,7 +502,7 @@
 
 			<section>
 				<section>
-					<h3>Using the Data Channel</h3>
+					<h2>Using the Data Channel</h2>
 				</section>
 				<section>
 					<h3>Let's look at a few examples</h3>
@@ -515,39 +527,20 @@
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						// sender
 						const fileReader = new FileReader();
-						const fileSlice = file.slice(offset, offset + chunckSize);
+						const fileSlice = file.slice(offset, offset + chunkSize);
 						fileReader.readAsArrayBuffer(fileSlice);
 						fileReader.onload = (event) => {
 							myDataChannel.send(event.target.result);
 						}
 
 						// on the receiving side
-						incommingFileBuffer.push(arrayBuffer);
+						incomingFileBuffer.push(arrayBuffer);
 
 						// when done on the receiving side
-						var recivedFile = new Blob(incommingFileBuffer); 
+						var receivedFile = new Blob(incomingFileBuffer); 
 					</code></pre>
 					<aside class="notes" data-markdown>
-						- Break large files up into chunks (offset and chunckSize)
-					</aside>
-				</section>
-				<section>
-					<h3>Sharing screen</h3>
-					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
-						navigator.getDisplayMedia({ video: true })
-						.then(function(mediaStream) {
-							...
-						}
-					</code></pre>
-					<p class="fragment">
-						getUserMedia -> getDisplayMedia
-					</p>
-					<h3 class="fragment">Only supported in Edge</h3>
-					<aside class="notes" data-markdown>
-						- Comming to rest. Might already be out for some
-						- Might miss target of chrome 70
-						- will promt
-						- will be sandt as vido
+						- Break large files up into chunks (offset and chunkSize)
 					</aside>
 				</section>
 				<section>
@@ -562,7 +555,7 @@
 						// send
 						myDataChannel.send(JSON.stringify(completeState or stateChange));
 						
-						// reciver
+						// receiver
 						receiveChannel.onmessage = (messageEvent) => {
 							const state = JSON.parse(messageEvent.data);
 						}
@@ -610,9 +603,9 @@
 					<h2 class="fragment black-stroke">Browser support</h2>
 					<iframe class="fragment" style="width: 1100px; height: 520px;" src="https://caniuse.com/#search=webrtc"></iframe>
 					<aside class="notes" data-markdown>
-						- Let's talk about the elephan in the room
+						- Let's talk about the elephant in the room
 						- Edge does not have the data channel
-						- Microsof is unhappy with the state of WebRTC and wants a bigger standard (Object RTC)
+						- Microsoft is unhappy with the state of WebRTC and wants a bigger standard (Object RTC)
 						- MS wants more control
 					</aside>
 				</section>
@@ -629,7 +622,7 @@
 						also granted."
 					</blockquote>
 					<p class="fragment">
-						In the process of beeing fixed
+						In the process of being fixed
 					</p>
 					<p class="fragment">
 						WebRTC only works in safari on iOS
@@ -641,7 +634,7 @@
 						- one of several data related bugs
 						- (might have changes) could
 						- Remember, Webkit/Apple’s implementation is young
-						- (might have changed) Webrtc only works insafari on ios, not in chrome on top of safari or webview
+						- (might have changed) Webrtc only works in safari on ios, not in chrome on top of safari or webview
 					</aside>
 				</section>
 				<section>
@@ -668,7 +661,7 @@
 							</tr>
 							<tr class="fragment">
 								<td>iOS</td>
-								<td>Only safari (comming to other browsers)</td>
+								<td>Only safari (coming to other browsers)</td>
 							</tr>
 							<tr class="fragment">
 								<td>Android</td>
@@ -676,7 +669,7 @@
 							</tr>
 							<tr class="fragment">
 								<td>Edge</td>
-								<td>No data channel. getDisplayMedia. Object RTC</td>
+								<td>No data channel. Object RTC</td>
 							</tr>
 							<tr class="fragment">
 								<td>IE 11</td>
@@ -684,7 +677,7 @@
 							</tr>
 						</tbody>
 						<aside class="notes" data-markdown>
-							- Edge data: It’s the 5’th highes requested feature to be added to edge (that's inn “under consideration”)
+							- Edge data: It’s the 5’th highest requested feature to be added to edge (that's inn “under consideration”)
 							- Remember that all browser on iOS are just skins for safari
 						</aside>
 					</table>
@@ -730,9 +723,10 @@
 					<aside class="notes" data-markdown>
 						- 8k works
 						- The alternatives are less secure
-						- WebRTC forbids unencrypted communication
+						- WebRTC forbids un-encrypted communication
 						- IP problem can be solved by good VPN (but ip exposed by a lot of progs)
 						- It gets updated every 6-8 weeks with your browser
+						- webrtc is sandboxed
 					</aside>
 				</section>
 			</section>
@@ -754,7 +748,7 @@
 					<img class="stretch" data-src="media/p2p.png">
 					<aside class="notes" data-markdown>
 						- adding one more will add 6 more connections
-						- not everyone needs to be connected to eachother always
+						- not everyone needs to be connected to each other always
 					</aside>
 				</section>
 				<section>
@@ -771,7 +765,7 @@
 				<section>
 					<h3>Data only can go much higher</h3>
 					<p>
-						All depend on structure and amout of data
+						All depend on structure and amount of data
 					</p>
 					<aside class="notes" data-markdown>
 						- does all users need to be connected to all other?
@@ -782,14 +776,14 @@
 						Data channel Host
 					</h3>
 					<p class="fragment">
-						One person beeing the host and master
+						One person being the host and master
 					</p>
 					<p class="fragment">
 						<img class="stretch" data-src="media/csm-datawebrtc.png">
 					</p>
 					<aside class="notes" data-markdown>
 						- You can structure WebRTC data channel network as either, but easier with P2P
-						- As it is just data, you can realy it frougth a "host"
+						- As it is just data, you can really it through a "host"
 					</aside>
 				</section>
 			</section>
@@ -814,7 +808,7 @@
 			<section>
 				<section data-background="media/stock/news.jpeg">
 					<h2 class="fragment black-stroke">
-						Lates new for WebRTC 📰
+						Latest new for WebRTC 📰
 					</h2>
 				</section>
 				<section>
@@ -825,7 +819,7 @@
 						As of 21 June 2018
 					</p>
 					<aside class="notes" data-markdown>
-						- Means it started to stabilise and will see wider and better support
+						- Means it started to stabilises and will see wider and better support
 					</aside>
 				</section>
 				<!-- <section>
@@ -842,13 +836,23 @@
 					</aside>
 				</section> -->
 				<section>
-					<h3>Getting screen without plugin</h3>
+					<h3>Sharing screen (without a plugin)</h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
-						navigator.getDisplayMedia({ video: true })
-						.then(function(mediaStream) {
-							...
-						}
-					</code></pre>
+							navigator.getDisplayMedia({ video: true })
+							.then(function(mediaStream) {
+								...
+							}
+						</code></pre>
+					<p class="fragment">
+						getUserMedia -> getDisplayMedia
+					</p>
+					<h3 class="fragment">Only supported in Edge</h3>
+					<aside class="notes" data-markdown>
+						- Comming to rest. Might already be out for some
+						- Might miss target of chrome 70
+						- will promt
+						- will be sandt as vido
+					</aside>
 				</section>
 				<section>
 					<h3>
@@ -881,7 +885,7 @@
 						<tbody>
 							<tr class="fragment">
 								<td>"sendrecv"</td>
-								<td>Sending and reciving</td>
+								<td>Sending and receiving</td>
 							</tr>
 							<tr class="fragment">
 								<td>"sendonly"</td>
@@ -889,7 +893,7 @@
 							</tr>
 							<tr class="fragment">
 								<td>"recvonly"</td>
-								<td>Reciving</td>
+								<td>Receiving</td>
 							</tr>
 							<tr class="fragment">
 								<td>"inactive"</td>
@@ -903,7 +907,7 @@
 			<section>
 				<section data-background="media/stock/inspire.jpg">
 					<h2 class="fragment black-stroke">
-						Data Channel deas
+						Data Channel ideas
 					</h2>
 				</section>
 				<section>
@@ -921,17 +925,17 @@
 					</p>
 					<aside class="notes" data-markdown>
 						- Can do far bigger, faster and more reliable data transfers between clients as server is not overloaded
-						- Using WebRTC offloads a lot of bandwith off the server
+						- Using WebRTC offloads a lot of bandwidth off the server
 					</aside>
 				</section>
-				<section>
+				<!-- <section>
 					<h3>Cross browser Broadcast Channel API</h3>
 
 					<aside class="notes" data-markdown>
-						- Got sad when you relised that the broadcast API is limited to a browser? <br>
-						- Use the data channel to link up more web browser on the same machene!
+						- Got sad when you realised that the broadcast API is limited to a browser? <br>
+						- Use the data channel to link up more web browser on the same computer!
 					</aside>
-				</section>
+				</section> -->
 				<section>
 					<h3>Can use WebRTC for signaling</h3>
 					<img class="stretch" data-src="media/webrtcdatsignal.png">
@@ -941,16 +945,19 @@
 					</aside>
 				</section>
 				<section>
-					<h3>Most examples can be solved using a server</h3>
+					<h3>The examples can be solved using a server</h3>
 					<h4 class="fragment">But now we have a direct option</h4>
+					<blockquote class="fragment">
+						"in almost all cases, using WebRTC will cost you less and get you there faster than the alternatives"
+					</blockquote>
 					<aside class="notes" data-markdown>
-						- cutting out a chain icreases speeds and reduces costs
+						- cutting out a chain increase speeds and reduces costs
 					</aside>
 				</section>
 				<section>
-					<h3>Webrtc is a buldingblock for the web of tomorrow</h3>
+					<h3>Webrtc is a building block for the web of tomorrow</h3>
 					<h3 class="fragment">You will need it, for video, audio or data</h3>
-					<h3 class="fragment">We are aproaching av ever more connected future and WebRTC will help create that future</h3>
+					<h3 class="fragment">We are approaching av ever more connected future and WebRTC will help create that future</h3>
 					<aside class="notes" data-markdown>
 						- connecting users w/o needing premission opens for insane new ideas
 					</aside>
@@ -961,17 +968,14 @@
 					It's gratis!
 				</h2>
 				<h3 class="fragment">
-					(exept for signaling and turn)
+					(except for signaling and turn)
 				</h3>
-				<blockquote class="fragment">
-					"in almost all cases, using WebRTC will cost you less and get you there faster than the alternatives"
-				</blockquote>
 			</section>
-			<section>
+			<!-- <section>
 				<h2>
 					Webrtc is a tool, not a solution
 				</h2>
-			</section>
+			</section> -->
 			<!-- <section>
 				<h3>Quick example of webRTC in action?</h3>
 				<h3>appear.in</h3>
@@ -989,8 +993,12 @@
 					Consider using WebRTC adapter
 				</h2>
 				<p>
-					(github.com/webrtchacks/adapter)
+					github.com/webrtchacks/adapter
 				</p>
+				<aside class="notes" data-markdown>
+					- to help isolate you from more changes
+					- more cross browser support (due to prefix and differen implementations)
+				</aside>
 			</section>
 			<section data-background="media/stock/adventureOver.jpeg">
 				<h1 class="fragment">The end for our Journey</h1>
