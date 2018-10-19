@@ -1,1 +1,7 @@
 Notes
+
+room size does not grow expenential is n^2 (or similar check)
+
+slit up code for sending files into sender and reciver
+
+slide with ilustration for signaling
