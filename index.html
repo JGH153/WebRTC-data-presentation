@@ -534,10 +534,12 @@
 						fileReader.onload = (event) => {
 							myDataChannel.send(event.target.result);
 						}
-
+					</code></pre>
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						// on the receiving side
 						incomingFileBuffer.push(arrayBuffer);
-
+					</code></pre>
+					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						// when done on the receiving side
 						var receivedFile = new Blob(incomingFileBuffer); 
 					</code></pre>
