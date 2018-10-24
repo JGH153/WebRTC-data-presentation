@@ -1,5 +1,3 @@
 Notes
 
-room size does not grow expenential is n^2 (or similar check)
-
-slide with ilustration for signaling
+WORK ON DEMO!
