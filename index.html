@@ -702,17 +702,6 @@
 						- is on iOS as well
 					</aside>
 				</section>
-				<section>
-					<h3>🗡️ Chrome is killing background tabs! 🗡️</h3>
-					<p class="fragment">
-						But WebRTC is (mostly) safe
-					</p>
-					<aside class="notes" data-markdown>
-						- Applications with real-time connections (WebSockets and WebRTC), to avoid closing these connections by timeout.
-						The run-timers-once-a-second rule is still applied in these cases.
-						- Applications playing audio are considered foreground and aren’t throttled. (webRTC with audio)
-					</aside>
-				</section>
 			</section>
 			<section>
 				<section>
@@ -800,20 +789,6 @@
 				</section>
 			</section>
 			<!-- <section>
-				<section>
-					<h3>To send data reliably, or not</h3>
-					<h3 class="fragment">
-						Why send unreliable?
-					</h3 class="fragment">
-					<h1 class="fragment">Speed</h1>
-					<aside class="notes" data-markdown>
-						- Sending files and chan ureliable would be catastrofic
-						- sending game starte unreliable cold be benefitical
-						- UDP vs TCP
-					</aside>
-				</section>
-			</section> -->
-			<!-- <section>
 				Debugging WebRTC
 				<iframe style="width: 700px; height: 580px;" src="https://testrtc.com/"></iframe>
 			</section> -->
@@ -885,36 +860,6 @@
 						- Only in FF for now, comming to rest
 					</aside>
 				</section>
-				<!-- <section>
-					<h3 class="no-caps">RTCRtpTransceiver.direction</h3>
-					<table>
-						<thead>
-							<tr>
-								<th>State</th>
-								<th>Description</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="fragment">
-								<td>"sendrecv"</td>
-								<td>Sending and receiving</td>
-							</tr>
-							<tr class="fragment">
-								<td>"sendonly"</td>
-								<td>Sending</td>
-							</tr>
-							<tr class="fragment">
-								<td>"recvonly"</td>
-								<td>Receiving</td>
-							</tr>
-							<tr class="fragment">
-								<td>"inactive"</td>
-								<td>Nothing/disabled</td>
-							</tr>
-						</tbody>
-					</table>
-
-				</section> -->
 			</section>
 			<section>
 				<section data-background="media/stock/inspire.jpg">
@@ -1021,6 +966,64 @@
 			</section>
 			<section>
 				This page is unintentionally left blank
+			</section>
+			<section>
+				<section>
+					<h1>Bonus slides!</h1>
+				</section>
+				<section>
+					<h3>To send data reliably, or not</h3>
+					<h3 class="fragment">
+						Why send unreliable?
+					</h3 class="fragment">
+					<h1 class="fragment">Speed</h1>
+					<aside class="notes" data-markdown>
+						- Sending files and chan ureliable would be catastrofic
+						- sending game starte unreliable cold be benefitical
+						- UDP vs TCP
+					</aside>
+				</section>
+				<section>
+					<h3 class="no-caps">RTCRtpTransceiver.direction</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>State</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fragment">
+								<td>"sendrecv"</td>
+								<td>Sending and receiving</td>
+							</tr>
+							<tr class="fragment">
+								<td>"sendonly"</td>
+								<td>Sending</td>
+							</tr>
+							<tr class="fragment">
+								<td>"recvonly"</td>
+								<td>Receiving</td>
+							</tr>
+							<tr class="fragment">
+								<td>"inactive"</td>
+								<td>Nothing/disabled</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</section>
+				<section>
+					<h3>🗡️ Chrome is killing background tabs! 🗡️</h3>
+					<p class="fragment">
+						But WebRTC is (mostly) safe
+					</p>
+					<aside class="notes" data-markdown>
+						- Applications with real-time connections (WebSockets and WebRTC), to avoid closing these connections by timeout.
+						The run-timers-once-a-second rule is still applied in these cases.
+						- Applications playing audio are considered foreground and aren’t throttled. (webRTC with audio)
+					</aside>
+				</section>
 			</section>
 		</div>
 	</div>
