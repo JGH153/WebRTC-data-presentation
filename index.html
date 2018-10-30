@@ -130,7 +130,7 @@
 					</aside>
 				</section>
 				<section>
-					<h3>Two browsers can NOT contact each other directly</h3>
+					<h2>Two browsers can NOT contact each other directly</h2>
 					<p class="fragment">
 						Need a signaling server
 					</p>
@@ -347,8 +347,7 @@
 						};
 						const myDataChannel = myRtcConnection.createDataChannel("label", options)
 						myRtcConnection.ondatachannel = (event) => {
-							const receiveChannel = event.channel;
-							receiveChannel.onmessage = (event) => {
+							event.channel.onmessage = (event) => {
 								// got a message
 							}
 						}
@@ -552,6 +551,7 @@
 					</code></pre>
 					<aside class="notes" data-markdown>
 						- Break large files up into chunks (offset and chunkSize)
+						- send file metadata separatly
 					</aside>
 				</section>
 				<section>
@@ -831,7 +831,7 @@
 							}
 						</code></pre>
 					<p class="fragment">
-						getUserMedia -> getDisplayMedia
+						getUserMedia vs getDisplayMedia
 					</p>
 					<h3 class="fragment">Only supported in Edge</h3>
 					<aside class="notes" data-markdown>
@@ -922,9 +922,9 @@
 				</section>
 			</section>
 			<section>
-				<h2>
+				<h1>
 					It's gratis!
-				</h2>
+				</h1>
 				<h3 class="fragment">
 					(except for signaling and TURN)
 				</h3>
@@ -943,7 +943,7 @@
 				</aside>
 			</section> -->
 			<section>
-				<h3>https://blog.mozilla.org/webrtc/</h3>
+				<h3>blog.mozilla.org/webrtc/</h3>
 				<img class="webrtc-logo-img" src="media/ffWebrtcblog.JPG">
 			</section>
 			<section>
