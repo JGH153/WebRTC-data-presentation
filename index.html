@@ -27,7 +27,7 @@
 		}
 
 		.slides {
-			width: 80% !important;
+			width: 84% !important;
 		}
 
 		h1,
@@ -44,6 +44,45 @@
 
 		.black-stroke-thin {
 			-webkit-text-stroke: 1px black;
+		}
+
+		.webrtc-red {
+			color: #BF0000;
+			color: red;
+			/* more readable */
+		}
+
+		.webrtc-blue {
+			color: #0289CC;
+		}
+
+		.webrtc-yellow {
+			color: #FFCC01;
+		}
+
+		.webrtc-orange {
+			color: #FF6600;
+		}
+
+		.webrtc {
+			color: #019939;
+		}
+
+		.skype {
+			color: #01AFF0;
+		}
+
+		.github {
+			color: #4078c0;
+		}
+
+		.angular {
+			color: #DD0330;
+			/* color: #C3002F; */
+		}
+
+		.nodejs {
+			color: #77AF64;
 		}
 	</style>
 
@@ -65,7 +104,8 @@
 		<div class="slides">
 			<section>
 				<h2>
-					The unstoppable secret superpower of WebRTC
+					The unstoppable secret superpower of
+					<span class="webrtc">WebRTC</span>
 					</h3>
 					<h3>
 						Jan Greger Hemb
@@ -74,12 +114,13 @@
 						Senior knowledge engineer at Computas
 					</h4>
 					<h4>
-						bit.ly/webrtc2018
+						bit.ly/webrtc2020
 					</h4>
 			</section>
 			<section>
 				<img class="webrtc-logo-img" src="media/webrtc-logo-horiz-retro-dist.svg">
-				<h2 class=" fragment fade-right">Featuring the unstoppable Data Channel!</h2>
+				<h2 class=" fragment fade-right">Featuring the <span class="webrtc">unstoppable</span> Data Channel!
+				</h2>
 			</section>
 			<section data-background="media/stock/exploring.jpeg">
 				<h2 class="fragment black-stroke">You don't need to know WebRTC</h2>
@@ -105,24 +146,25 @@
 			</section>
 			<section>
 				<section>
-					<h2>In a nutshell, what is WebRTC?</h2>
+					<h2>In a nutshell, what is <span class="webrtc">WebRTC</span>?</h2>
 					<ul>
-						<li class="fragment">Direct browser-to-browser communication API</li>
+						<li class="fragment"><span class="webrtc">Direct</span> browser-to-browser communication API
+						</li>
 						<li class="fragment">API for real time communication</li>
 						<li class="fragment">Websocket directly between browsers</li>
 						<li class="fragment">Channels for video, audio and data</li>
 						<li class="fragment">Media engine</li>
-						<li class="fragment">API for creating Skype in the browser</li>
+						<li class="fragment">API for creating <span class="skype">Skype</span> in the browser</li>
 					</ul>
 				</section>
 				<section>
 					<h3>Traditional model</h3>
-					<h5>A server in the middle</h5>
+					<h5>A server in the <span class="webrtc-red">middle</span></h5>
 					<img class="stretch" data-src="media/csm.png">
 				</section>
 				<section>
 					<h3>Skip the middle man!</h3>
-					<h5>Communicate directly</h5>
+					<h5>Communicate <span class="webrtc">directly</span></h5>
 					<img class="stretch" data-src="media/p2p.png">
 					<aside class="notes" data-markdown>
 						- Cutting the middle man is what amazon is doing
@@ -130,16 +172,16 @@
 					</aside>
 				</section>
 				<section>
-					<h2>Two browsers can NOT contact each other directly</h2>
-					<p class="fragment">
-						Need a signaling server
-					</p>
+					<h2>Two browsers can <span class="webrtc-red">NOT</span> contact each other directly</h2>
+					<h3 class="fragment">
+						Need a <span class="webrtc">signaling</span> server
+					</h3>
 					<aside class="notes" data-markdown>
 						- to exchange metadata to coordinate communication
 					</aside>
 				</section>
 				<section>
-					<h3>Signaling</h3>
+					<h3 class="webrtc">Signaling</h3>
 					<img class="stretch" data-src="media/signaling.png">
 					<aside class="notes" data-markdown>
 						- Your computes does not have an public IP
@@ -149,7 +191,8 @@
 			</section>
 			<section>
 				<h3>Hiccup in the learning curve</h3>
-				<img style="max-height: 550px;" src="https://steamuserimages-a.akamaihd.net/ugc/488934701858391556/2DA4B3CF3132B1D3D7E0ED6C6DDFDE37B2578555/?interpolation=lanczos-none&output-format=jpeg&output-quality=95&fit=inside%7C2048%3A*">
+				<img style="max-height: 550px;"
+					src="https://steamuserimages-a.akamaihd.net/ugc/488934701858391556/2DA4B3CF3132B1D3D7E0ED6C6DDFDE37B2578555/?interpolation=lanczos-none&output-format=jpeg&output-quality=95&fit=inside%7C2048%3A*">
 				<aside class="notes" data-markdown>
 					- Also is seems to be narrovly focues (just video conversations), but i'm here to prove thats wrong
 					- Learning first time to connect is hard, then it's easier
@@ -159,7 +202,7 @@
 			<section>
 				<section>
 					<h3>
-						Had some difficulties while creating this presentation
+						Had some <span class="webrtc">difficulties</span> while creating this presentation
 					</h3>
 				</section>
 				<section class="contain-bg-img" data-background="media/pondus/1.jpg"></section>
@@ -170,8 +213,8 @@
 			</section>
 			<section>
 				<section>
-					<h2>How I learned WebRTC</h2>
-					<h4 class="fragment">And found the mysterious data channel</h4>
+					<h2>How I learned <span class="webrtc">WebRTC</span></h2>
+					<h4 class="fragment">And found the <span class="webrtc">mysterious</span> data channel</h4>
 					<aside class="notes" data-markdown>
 						- you might have the same experiences
 					</aside>
@@ -252,13 +295,13 @@
 					</aside>
 				</section>
 				<section>
-					<h3>Code on github, can run all locally</h3>
+					<h3>Code on <span class="github">Github</span>, can run all locally</h3>
 					<p>
 						github.com/JGH153/webrtc
 					</p>
 				</section>
 				<section>
-					<h3>Frontend in Angular and backend in NodeJS</h3>
+					<h3>Frontend in <span class="angular">Angular</span> and backend in <span class="nodejs">NodeJS</span></h3>
 					<aside class="notes" data-markdown>
 						- can be done in react, vue or pure JS
 						- backend can be in anything with Websockets
@@ -267,11 +310,13 @@
 				<section>
 					<h3>How does it work</h3>
 					<ul>
-						<li class="fragment">Canvas for drawing</li>
-						<li class="fragment">Websocket for signaling</li>
-						<li class="fragment">Nodejs backend for matching</li>
+						<li class="fragment">
+							<span class="webrtc">Canvas</span> for drawing
+						</li>
+						<li class="fragment"><span class="webrtc">Websocket</span> for signaling</li>
+						<li class="fragment"><span class="webrtc">Nodejs</span> backend for matching</li>
 						<li class="fragment">Connect two users</li>
-						<li class="fragment">Send any draw event using WebRTC</li>
+						<li class="fragment">Send any draw event using <span class="webrtc">WebRTC</span></li>
 					</ul>
 					<aside class="notes" data-markdown>
 						- Simple bakend
@@ -281,17 +326,18 @@
 			</section>
 			<section>
 				<section data-background="media/stock/mountanSky.jpeg">
+					<h2 class="black-stroke">Part 2</h2>
 					<h2 class="fragment black-stroke">A deeper dive into WebRTC</h2>
 				</section>
 				<section>
-					<h3>How does it work?</h3>
+					<h2>How to use <span class="webrtc">WebRTC</span></h2>
 					<aside class="notes" data-markdown>
 						- no a thourual overview, more key points and flow
 						- for Webrtc with video, audio and data
 					</aside>
 				</section>
 				<section>
-					Getting media...
+					Getting media
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						navigator.mediaDevices.getUserMedia({ video: true, audio: true })
 						.then(function(mediaStream) {
@@ -301,7 +347,7 @@
 					</code></pre>
 				</section>
 				<section>
-					Setup RTCPeerConnection with a STUN server
+					Setup <span class="webrtc">RTCPeerConnection</span> with a <span class="webrtc">STUN</span> server
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						const configuration = {
 							iceServers: [{ urls: 'stun:stun2.1.google.com:19302' }]
@@ -314,7 +360,7 @@
 					</aside>
 				</section>
 				<section>
-					Adding local stream to RTCPeerConnection
+					Adding local stream to <span class="webrtc">RTCPeerConnection</span>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						localVideoStream.getTracks().forEach((currentTrack: MediaStreamTrack) => {
 							myRtcConnection.addTrack(currentTrack);
@@ -356,9 +402,9 @@
 				</section>
 				<section>
 					<h2>Connecting to another browser</h2>
-					<p class="fragment">Meet at a signaling server</p>
+					<p class="fragment">Meet at a <span class="webrtc">signaling</span> server</p>
 					<p class="fragment">Does not technically need a signaling server</p>
-					<p class="fragment">Suggest using WebSocket</p>
+					<p class="fragment">Suggest using <span class="webrtc">WebSocket</span></p>
 					<aside class="notes" data-markdown>
 						- Signaling/discovery
 						- Can use some pigeon with a memory stick
@@ -397,7 +443,7 @@
 					</code></pre>
 				</section>
 				<section>
-					<h3>Time for some ICE</h3>
+					<h3>Time for some <span class="webrtc">ICE</span></h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						myRtcConnection.onicecandidate = (event) => {
 							sendMessageToServer(event.candidate, "Other User");
@@ -417,7 +463,7 @@
 						// Automagick
 					</code></pre>
 					<p class="fragment">
-						Might fall back to TURN
+						Might fall back to <span class="webrtc-red">TURN</span>
 					</p>
 				</section>
 				<section data-background="media/stock/celebrate.jpeg">
@@ -432,10 +478,10 @@
 							Shared backend
 						</li>
 						<li class="fragment">
-							CreatePeerConnection with STUN (local)
+							CreatePeerConnection with STUN
 						</li>
 						<li class="fragment">
-							Video, sound, data
+							Setup video, sound, and data
 						</li>
 						<li class="fragment">
 							Send offer, and receive answer
@@ -448,17 +494,20 @@
 						</li>
 					</ol>
 					<h2 class="fragment">
-						Connected!
+						<span class="webrtc">
+							Connected!
+						</span>
 					</h2>
 				</section>
 			</section>
 
 			<section>
 				<section data-background="media/stock/diving.jpeg">
+					<h2 class="black-stroke">Part 3</h2>
 					<h2 class="fragment black-stroke">Diving into the data channel</h2>
 				</section>
 				<section>
-					<h3>Can send (almost) anything</h3>
+					<h3>Can send (almost) <span class="webrtc">anything</span></h3>
 					<aside class="notes" data-markdown>
 						- USVString (so JSON), a Blob, an ArrayBuffer, or an ArrayBufferView
 					</aside>
@@ -484,9 +533,9 @@
 					<h1>Without asking for permission</h1>
 				</section>
 				<section>
-					<h2>How to connect using only the data channel</h2>
+					<h2>How to <span class="webrtc">only</span> connect the data channel</h2>
 					<p class="fragment">
-						Same as before, just with some changes
+						Same as before, just a <span class="webrtc">few</span> some changes
 					</p>
 				</section>
 				<section>
@@ -500,6 +549,13 @@
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						myRtcConnection.ontrack = (event) => { ... }
 					</code></pre>
+
+					<h2 class="fragment">
+						<span class="webrtc">
+							Done!
+						</span>
+					</h2>
+
 					<aside class="notes" data-markdown>
 						- you can show another persons video w/o premission???
 					</aside>
@@ -529,7 +585,7 @@
 					</aside>
 				</section>
 				<section>
-					Sending files
+					<h3>Sending files</h3>
 					<pre class="fragment"><code class="TypeScript" data-trim contenteditable>
 						// sender
 						const fileReader = new FileReader();
@@ -610,7 +666,8 @@
 			<section>
 				<section data-background="media/stock/elephant.jpeg">
 					<h2 class="fragment black-stroke">Browser support</h2>
-					<iframe class="fragment" style="width: 1100px; height: 520px;" src="https://caniuse.com/#search=webrtc"></iframe>
+					<iframe class="fragment" style="width: 1100px; height: 520px;"
+						src="https://caniuse.com/#search=webrtc"></iframe>
 					<aside class="notes" data-markdown>
 						- Let's talk about the elephant in the room
 						- Edge does not have the data channel
@@ -619,7 +676,9 @@
 					</aside>
 				</section>
 				<section>
-					<h3>Let's talk about Safari</h3>
+					<!-- https://stackoverflow.com/questions/45055329/does-webkit-in-ios-11-beta-support-webrtc -->
+					<!--  Data channel only outside safari? -->
+					<h3>Let's talk about <span class="webrtc-red">Safari</span></h3>
 					<p class="fragment">
 						It's experimental and buggy
 					</p>
@@ -627,13 +686,14 @@
 						"Safari fails to establish a connection unless getUserMedia is called"
 					</blockquote>
 					<blockquote class="fragment">
-						"Contrary to Chrome and Firefox, we do not leak private IP addresses access unless camera or microphone access is
+						"Contrary to Chrome and Firefox, we do not leak private IP addresses access unless camera or
+						microphone access is
 						also granted."
 					</blockquote>
 					<p class="fragment">
 						It has recently been fixed!
 					</p>
-					<p class="fragment">
+					<p class="fragment"> 
 						WebRTC only works in safari on iOS
 					</p>
 					<!-- <h1>TODO SHOT FROM IFRAME</h1> -->
@@ -643,7 +703,8 @@
 						- one of several data related bugs
 						- (might have changes) could
 						- Remember, Webkit/Apple’s implementation is young
-						- (might have changed) Webrtc only works in safari on ios, not in chrome on top of safari or webview
+						- (might have changed) Webrtc only works in safari on ios, not in chrome on top of safari or
+						webview
 					</aside>
 				</section>
 				<section>
@@ -666,7 +727,7 @@
 							</tr>
 							<tr class="fragment">
 								<td>Safari</td>
-								<td>Recent. Data channel issues (to be fixed)</td>
+								<td>Behind all other, but working</td>
 							</tr>
 							<tr class="fragment">
 								<td>iOS</td>
@@ -678,7 +739,7 @@
 							</tr>
 							<tr class="fragment">
 								<td>Edge</td>
-								<td>No data channel. Object RTC</td>
+								<td>Getting with chromium</td>
 							</tr>
 							<tr class="fragment">
 								<td>IE 11</td>
@@ -686,7 +747,8 @@
 							</tr>
 						</tbody>
 						<aside class="notes" data-markdown>
-							- Edge data: It’s the 5’th highest requested feature to be added to edge (that's inn “under consideration”)
+							- Edge data: It’s the 5’th highest requested feature to be added to edge (that's inn “under
+							consideration”)
 							- Remember that all browser on iOS are just skins for safari
 						</aside>
 					</table>
@@ -708,7 +770,8 @@
 						"A Study of WebRTC Security"
 					</p>
 					<blockquote class="fragment" cite="https://webrtc-security.github.io/">
-						"As a result of this strong focus on secure communication, WebRTC is currently regarded by some to be one of the
+						"As a result of this strong focus on secure communication, WebRTC is currently regarded by some
+						to be one of the
 						most secure VoIP solutions out there"
 					</blockquote>
 					<blockquote class="fragment" cite="https://bloggeek.me/webrtc-security-threats/">
@@ -834,7 +897,8 @@
 					<p class="fragment">
 						getUserMedia vs getDisplayMedia
 					</p>
-					<h3 class="fragment">Only supported in Edge</h3>
+					<h3 class="fragment">Edge, Chrome, FF</h3>
+					<h3 class="fragment">Audio capture</h3>
 					<aside class="notes" data-markdown>
 						- Comming to rest. Might already be out for some
 						- Might miss target of chrome 70
@@ -842,15 +906,17 @@
 						- will be sandt as vido
 					</aside>
 				</section>
-				<section>
+				<!-- <section>
 					<h3>
 						Transceiver
 					</h3>
 					<ul>
-						<li class="fragment">New (and optional) way of having more control over how media flows between clients</li>
+						<li class="fragment">New (and optional) way of having more control over how media flows between
+							clients</li>
 						<li class="fragment">More control for more complexity</li>
 						<li class="fragment">Can start sending video before negotiation has completed</li>
-						<li class="fragment">Transceiver will allow you to distinguish between several incoming video streams</li>
+						<li class="fragment">Transceiver will allow you to distinguish between several incoming video
+							streams</li>
 					</ul>
 
 
@@ -860,7 +926,7 @@
 						- (as far as i know) it will remain optional and not become the standard
 						- Only in FF for now, comming to rest
 					</aside>
-				</section>
+				</section> -->
 			</section>
 			<section>
 				<section data-background="media/stock/inspire.jpg">
@@ -882,7 +948,8 @@
 						Servers are (relatively) expensive
 					</p>
 					<aside class="notes" data-markdown>
-						- Can do far bigger, faster and more reliable data transfers between clients as server is not overloaded
+						- Can do far bigger, faster and more reliable data transfers between clients as server is not
+						overloaded
 						- Using WebRTC offloads a lot of bandwidth off the server
 					</aside>
 				</section>
@@ -905,26 +972,28 @@
 				</section>
 				<section>
 					<h3>The examples can be solved using a server</h3>
-					<h4 class="fragment">But now we have a direct option</h4>
+					<h4 class="fragment">But now we have a <span class="webrtc">direct</span> option</h4>
 					<blockquote class="fragment">
-						"in almost all cases, using WebRTC will cost you less and get you there faster than the alternatives"
+						"in almost all cases, using WebRTC will cost you less and get you there faster than the
+						alternatives"
 					</blockquote>
 					<aside class="notes" data-markdown>
 						- cutting out a chain increase speeds and reduces costs
 					</aside>
 				</section>
 				<section>
-					<h3>WebRTC is a building block for the web of tomorrow</h3>
+					<h3><span class="webrtc">WebRTC</span> is a building block for the web of tomorrow</h3>
 					<h3 class="fragment">You will need it, for video, audio or data</h3>
-					<h3 class="fragment">We are approaching an ever more connected future and WebRTC will help you create that future</h3>
+					<h3 class="fragment">We are approaching an ever more connected future and <span class="webrtc">WebRTC</span> will help you
+						create that future</h3>
 					<aside class="notes" data-markdown>
 						- connecting users w/o needing premission opens for insane new ideas
 					</aside>
 				</section>
 			</section>
 			<section>
-				<h1>
-					It's gratis!
+				<h1 class="">
+					<span class="webrtc">It's gratis!</span>
 				</h1>
 				<h3 class="fragment">
 					(except for signaling and TURN)
@@ -949,7 +1018,7 @@
 			</section>
 			<section>
 				<h2>
-					Consider using WebRTC adapter
+					Consider using <span class="webrtc">WebRTC</span> adapter
 				</h2>
 				<p>
 					github.com/webrtchacks/adapter
@@ -962,12 +1031,9 @@
 			<section data-background="media/stock/adventureOver.jpeg">
 				<h1 class="fragment">The end of our Journey</h1>
 			</section>
-			<section data-background="media/stock/questions.jpeg">
-				<h1 class="fragment">Questions?</h1>
-			</section>
 			<section>
-				<h1>bit.ly/webrtc2018demo</h1>
-				<h3>webrtc 2018 demo</h3>
+				<h1>bit.ly/webrtc2020demo</h1>
+				<h3>webrtc 2020 demo</h3>
 			</section>
 			<section>
 				This page is unintentionally left blank
@@ -1024,7 +1090,8 @@
 						But WebRTC is (mostly) safe
 					</p>
 					<aside class="notes" data-markdown>
-						- Applications with real-time connections (WebSockets and WebRTC), to avoid closing these connections by timeout.
+						- Applications with real-time connections (WebSockets and WebRTC), to avoid closing these
+						connections by timeout.
 						The run-timers-once-a-second rule is still applied in these cases.
 						- Applications playing audio are considered foreground and aren’t throttled. (webRTC with audio)
 					</aside>
